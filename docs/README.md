@@ -97,7 +97,6 @@ Paralelamente, uma parcela significativa da população vive em situação de vu
 
 # Product Design
 
-Nesse momento, vamos transformar os insights e validações obtidos em soluções tangíveis e utilizáveis. Essa fase envolve a definição de uma proposta de valor, detalhando a prioridade de cada ideia e a consequente criação de wireframes, mockups e protótipos de alta fidelidade, que detalham a interface e a experiência do usuário.
 
 ## Histórias de Usuários
 
@@ -165,46 +164,22 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ## Projeto de Interface
 
-Artefatos relacionados com a interface e a interacão do usuário na proposta de solução.
 
 ### Wireframes
 
-Estes são os protótipos de telas do sistema.
 
-**✳️✳️✳️ COLOQUE AQUI OS PROTÓTIPOS DE TELAS COM TÍTULO E DESCRIÇÃO ✳️✳️✳️**
+**Link wireframe feito no figma:**https://www.figma.com/design/o51VD9pVx5BRzSMtVlPGFM/Sem-t%C3%ADtulo--c%C3%B3pia-?node-id=0-1&t=DsZM3jxwi1H6cR55-1
 
-##### TELA XPTO ⚠️ EXEMPLO ⚠️
 
-Descrição para a tela XPTO
-
-![Exemplo de wireframe](images/exemplo-wireframe.png)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Wireframes são protótipos das telas da aplicação usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante ao layout de elementos fundamentais na interface.
->
-> **Orientações**:
->
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
 
 ### User Flow
 
-**✳️✳️✳️ COLOQUE AQUI O DIAGRAMA DE FLUXO DE TELAS ✳️✳️✳️**
 
-![Exemplo de fluxo de telas](images/exemplo-userflow.png)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapear todo fluxo de telas do site ou app. Essa técnica funciona para alinhar os caminhos e as possíveis ações que o usuário pode fazer junto com os membros de sua equipe.
->
-> **Orientações**:
->
-> - [User Flow: O Quê É e Como Fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User Flow vs Site Maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 User Flow Tools &amp; Templates for Smooth](https://www.mockplus.com/blog/post/user-flow-tools)
+![Userflow](images/userflow.png)
+
+
+
 
 ### Protótipo Interativo
 
