@@ -82,6 +82,13 @@ Paralelamente, uma parcela significativa da população vive em situação de vu
 
 ![Mapa de stakeholders:](images/stakeholders.png)
 
+## Pesquisa de entendimento
+Pesquisas mostram que as doações aumentam em períodos de crise, como desastres ou emergências, mas não se mantêm constantes ao longo do tempo, de acordo com o site Nossa Causa. Isso indica que, apesar da solidariedade das pessoas, o apoio costuma ser pontual e não contínuo.
+
+Além disso, a falta de confiança nas ONGs, muitas vezes causada pela pouca transparência e por casos de fraudes, faz com que muitos doadores evitem contribuir ou doem apenas uma vez. As próprias organizações também enfrentam dificuldades, como estrutura limitada e dependência de doações, o que impacta a continuidade de seus projetos.
+
+Como consequência, quem mais sofre são as pessoas em situação de vulnerabilidade, que dependem dessas ações para ter acesso a apoio e melhores condições de vida. Assim, o principal desafio não é a falta de vontade de ajudar, mas sim as barreiras que impedem que essa ajuda seja constante e confiável.
+
 
 ## Etapa de Definição
 
@@ -219,6 +226,11 @@ Backlog: Codificação do projeto
 A Fazer:
 Em Andamento:Divisão do papéis na apresentação
 Concluído: Matriz CSD, Mapa de Stakeholders, Personas, Proposta de Valor, Wireframe, Fluxo de Telas, Documentação.
+
+## Referências Bibliográficas
+nossacausa.com
+G1
+Wikipédia
 
 
 
