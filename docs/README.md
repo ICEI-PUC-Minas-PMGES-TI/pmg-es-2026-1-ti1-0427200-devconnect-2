@@ -83,11 +83,11 @@ Paralelamente, uma parcela significativa da população vive em situação de vu
 ![Mapa de stakeholders:](images/stakeholders.png)
 
 ## Pesquisa de entendimento
-Pesquisas mostram que as doações aumentam em períodos de crise, como desastres ou emergências, mas não se mantêm constantes ao longo do tempo, de acordo com o site Nossa Causa. Isso indica que, apesar da solidariedade das pessoas, o apoio costuma ser pontual e não contínuo.
+Pesquisas mostram que as doações no Brasil vêm crescendo e atingem valores altos, mas não acontecem de forma constante ao longo do tempo. Segundo dados da plataforma Nossa Causa, grande parte das contribuições ocorre em momentos de crise, como desastres naturais ou emergências, quando há maior mobilização da sociedade. No entanto, fora desses períodos, o volume de doações tende a diminuir, o que dificulta a continuidade de projetos sociais.
+Além disso, o comportamento do doador brasileiro mudou: as pessoas estão mais criteriosas e informadas, buscando entender melhor para onde o dinheiro será destinado antes de contribuir. Apesar disso, a falta de confiança ainda é uma das principais barreiras. Apenas uma pequena parcela da população acredita plenamente nas ONGs, e muitos deixam de doar após notícias negativas ou suspeitas de má gestão.
+Outro desafio importante está na própria estrutura das organizações. Muitas ONGs operam com poucos recursos e dependem diretamente de doações, o que dificulta a manutenção de projetos a longo prazo. Ao mesmo tempo, a demanda por ajuda só cresce, impulsionada por problemas sociais como pobreza, fome e desigualdade, que atingem milhões de brasileiros
+Diante desse cenário, as pessoas mais impactadas são aquelas em situação de vulnerabilidade, que dependem dessas iniciativas para acesso a alimentos, abrigo, educação e apoio básico. Quando as doações não são constantes ou diminuem, esses grupos acabam sendo diretamente prejudicados.
 
-Além disso, a falta de confiança nas ONGs, muitas vezes causada pela pouca transparência e por casos de fraudes, faz com que muitos doadores evitem contribuir ou doem apenas uma vez. As próprias organizações também enfrentam dificuldades, como estrutura limitada e dependência de doações, o que impacta a continuidade de seus projetos.
-
-Como consequência, quem mais sofre são as pessoas em situação de vulnerabilidade, que dependem dessas ações para ter acesso a apoio e melhores condições de vida. Assim, o principal desafio não é a falta de vontade de ajudar, mas sim as barreiras que impedem que essa ajuda seja constante e confiável.
 
 
 ## Etapa de Definição
@@ -228,9 +228,13 @@ Em Andamento:Divisão do papéis na apresentação
 Concluído: Matriz CSD, Mapa de Stakeholders, Personas, Proposta de Valor, Wireframe, Fluxo de Telas, Documentação.
 
 ## Referências Bibliográficas
-nossacausa.com
+Nossa Causa
+IDIS
+GIFE
+CNN Brasil
+Belém.com.br
+HAJA ONG
 G1
-Wikipédia
 
 
 
