@@ -64,6 +64,13 @@ Exemplo: uma ONG que organiza arrecadação de alimentos ou roupas para comunida
 Beneficiários: São pessoas em situação de vulnerabilidade que recebem as doações. Em geral, possuem acesso limitado à tecnologia e dependem das instituições para intermediar o recebimento dos recursos, embora alguns possam utilizar diretamente a plataforma.
 Exemplo: famílias de baixa renda que recebem cestas básicas ou apoio financeiro por meio de campanhas.
 
+## Etapa de Entendimento
+A prática de doações no Brasil apresenta um cenário relevante, porém desafiador. Segundo a CNN Brasil (2022), cerca de 84% dos brasileiros já realizaram algum tipo de doação, evidenciando o potencial solidário da população.
+
+Apesar disso, a continuidade dessas doações é limitada. De acordo com a Nossa Causa (2024), a falta de confiança nas instituições é uma das principais barreiras, levando muitos doadores a se tornarem mais cautelosos. Além disso, as doações tendem a ser irregulares, já que muitos usuários buscam informações antes de contribuir.
+
+Paralelamente, uma parcela significativa da população vive em situação de vulnerabilidade e depende dessas doações para suprir necessidades básicas. Nesse contexto, torna-se necessária a criação de soluções tecnológicas que aumentem a transparência e facilitem a conexão entre doadores, instituições e beneficiários.
+
 
 
 
@@ -201,33 +208,22 @@ Descrição para a tela XPTO
 
 ### Protótipo Interativo
 
-**✳️✳️✳️ COLOQUE AQUI UM IFRAME COM SEU PROTÓTIPO INTERATIVO ✳️✳️✳️**
+Protótipo Interativo Figma
 
-✅ [Protótipo Interativo (MarvelApp)](https://marvelapp.com/prototype/4hd6091?emb=1&iosapp=false&frameless=false)  ⚠️ EXEMPLO ⚠️
+ [Protótipo Interativo (Figma)](https://www.figma.com/proto/6Sr3SsCDFay15DySpWLEMa/Sem-t%C3%ADtulo?node-id=1-1934&p=f&t=GY7HPRstz0mHn3M0-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A1934) 
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Um protótipo interativo apresenta o projeto de interfaces e permite ao usuário navegar pelas funcionalidades como se estivesse lidando com o software pronto. Utilize as mesmas ferramentas de construção de wireframes para montagem do seu protótipo interativo. Inclua o link para o protótipo interativo do projeto.
 
 # Metodologia
 
-Detalhes sobre a organização do grupo e o ferramental empregado.
 
 ## Ferramentas
 
-Relação de ferramentas empregadas pelo grupo durante o projeto.
+Editor de código: Visual Studio Code.
+Comunicação: WhatsApp.
+Versionamento e repositório: GitHub, utilizado para controle de versões e armazenamento do projeto;
+Processo de Design Thinking: Miro.
+Wireframes e protótipos: Figma.
 
-| Ambiente                    | Plataforma | Link de acesso                                     |
-| --------------------------- | ---------- | -------------------------------------------------- |
-| Processo de Design Thinking | Miro       | https://miro.com/XXXXXXX ⚠️ EXEMPLO ⚠️        |
-| Repositório de código     | GitHub     | https://github.com/XXXXXXX ⚠️ EXEMPLO ⚠️      |
-| Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️ |
-| Protótipo Interativo       | MarvelApp  | https://marvelapp.com/XXXXXXX ⚠️ EXEMPLO ⚠️   |
-|                             |            |                                                    |
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Liste as ferramentas empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível. Inclua itens como: (1) Editor de código, (2) )ferramentas de comunicação, (3) )ferramentas de diagramação, (4) )plataformas de hospedagem, entre outras.
 
 ## Gerenciamento do Projeto
 
