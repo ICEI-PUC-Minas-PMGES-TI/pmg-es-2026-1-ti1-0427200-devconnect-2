@@ -168,7 +168,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 ### Wireframes
 
 
-**Link wireframe feito no figma:**https://www.figma.com/design/o51VD9pVx5BRzSMtVlPGFM/Sem-t%C3%ADtulo--c%C3%B3pia-?node-id=0-1&t=DsZM3jxwi1H6cR55-1
+Link wireframe feito no figma:https://www.figma.com/design/o51VD9pVx5BRzSMtVlPGFM/Sem-t%C3%ADtulo--c%C3%B3pia-?node-id=0-1&t=DsZM3jxwi1H6cR55-1
 
 
 
@@ -183,7 +183,6 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Protótipo Interativo
 
-Protótipo Interativo Figma
 
  [Protótipo Interativo (Figma)](https://www.figma.com/proto/6Sr3SsCDFay15DySpWLEMa/Sem-t%C3%ADtulo?node-id=1-1934&p=f&t=GY7HPRstz0mHn3M0-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A1934) 
 
@@ -192,33 +191,36 @@ Protótipo Interativo Figma
 
 
 ## Ferramentas
+Linguagens:HTML,CSS e JavaScript  
 
 Editor de código: Visual Studio Code.
+
 Comunicação: WhatsApp.
-Versionamento e repositório: GitHub, utilizado para controle de versões e armazenamento do projeto;
+
+Versionamento e repositório: GitHub, utilizado para controle de versões e armazenamento do projeto.
+
 Processo de Design Thinking: Miro.
+
 Wireframes e protótipos: Figma.
 
 
 ## Gerenciamento do Projeto
 
-Divisão de papéis no grupo e apresentação da estrutura da ferramenta de controle de tarefas (Kanban).
+Divisão de papéis:
+ Luís Fernando de Sousa Dias:Criação do protótipo interativo e documentação
+ Bernardo Arruda Leite:Criação de wireframes
+ Daniel Oliveira de Menezes :Criação de slides para apresentação
+ Erick Calixto David Silva:Criação de wireframes
+ Larissa Fineli:Criação do fluxograma
+ Fernando de Oliveira Palheiros:Criação do fluxograma
+ Tais Ribeiro Pereira Dias:Criação de slides para apresentação
 
-![Exemplo de Kanban](images/exemplo-kanban.png)
+Backlog: Codificação do projeto
+A Fazer:
+Em Andamento:Divisão do papéis na apresentação
+Concluído: Matriz CSD, Mapa de Stakeholders, Personas, Proposta de Valor, Wireframe, Fluxo de Telas, Documentação.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesta parte do documento, você deve apresentar  o processo de trabalho baseado nas metodologias ágeis, a divisão de papéis e tarefas, as ferramentas empregadas e como foi realizada a gestão de configuração do projeto via GitHub.
->
-> Coloque detalhes sobre o processo de Design Thinking e a implementação do Framework Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
->
-> **Orientações**:
->
-> - [Sobre Projects - GitHub Docs](https://docs.github.com/pt/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
-> - [Gestão de projetos com GitHub | balta.io](https://balta.io/blog/gestao-de-projetos-com-github)
-> - [(460) GitHub Projects - YouTube](https://www.youtube.com/playlist?list=PLiO7XHcmTsldZR93nkTFmmWbCEVF_8F5H)
-> - [11 Passos Essenciais para Implantar Scrum no seu Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
+
 
 # Solução Implementada
 
