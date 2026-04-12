@@ -2,13 +2,17 @@
 
 Informações básicas do projeto.
 
-* **Projeto:** [NOME DO PROJETO]
-* **Repositório GitHub:** [LINK PARA O REPOSITÓRIO NO GITHUB]
+* **Projeto:** ConectaPlus
+* **Repositório GitHub:** https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2026-1-ti1-0427200-devconnect-2.git
 * **Membros da equipe:**
 
-  * [Fulano](https://github.com/fulano) ⚠️ EXEMPLO ⚠️
-  * [Beltrano](https://github.com/beltrano) ⚠️ EXEMPLO ⚠️
-  * [Cicrano](https://github.com/cicrano) ⚠️ EXEMPLO ⚠️
+* Luís Fernando de Sousa Dias
+* Bernardo Arruda Leite
+* Daniel Oliveira de Menezes 
+* Erick Calixto David Silva
+* Larissa Fineli
+* Fernando de Oliveira Palheiros
+* Tais Ribeiro Pereira Dias
 
 A documentação do projeto é estruturada da seguinte forma:
 
@@ -20,79 +24,58 @@ A documentação do projeto é estruturada da seguinte forma:
 6. Solução
 7. Referências Bibliográficas
 
-✅ [Documentação de Design Thinking (MIRO)](files/processo-dt.pdf)
+✅ [Documentação de Design Thinking (MIRO)](images/desingthinking.png)
 
 # Contexto
 
 Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa e público-alvo.
 
 ## Problema
-
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesse momento você deve apresentar o problema que a sua aplicação deve resolver. No entanto, não é a hora de comentar sobre a aplicação. Descreva também o contexto em que essa aplicação será usada, se houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
->
-> **Orientações**:
->
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+A realização de doações ainda apresenta dificuldades, principalmente quando se trata de doar diretamente para pessoas, organizações não governamentais (ONGs) ou campanhas solidárias, como vaquinhas. Muitas vezes, os doadores enfrentam insegurança quanto à confiabilidade dessas ações, além da falta de praticidade no processo.
+Esse cenário gera barreiras que dificultam a conexão entre quem deseja ajudar e quem realmente precisa de apoio, tornando o processo menos eficiente e acessível.
 
 ## Objetivos
+O objetivo geral deste trabalho é desenvolver uma aplicação que facilite o processo de doações e aumente a confiabilidade entre doadores e beneficiários. Dessa forma, doações como arrecadação de roupas, alimentos, contribuições financeiras (vaquinhas) e apoio a ONGs de diversos segmentos serão realizadas de maneira mais simples, segura e eficiente, ampliando o alcance da ajuda a pessoas em situação de vulnerabilidade.
+Como objetivos específicos, destacam-se:
+-Desenvolver um sistema que conecte doadores a instituições e pessoas que necessitam de ajuda, de forma organizada e acessível;
+-Implementar mecanismos que garantam a transparência e a confiabilidade das doações realizadas na plataforma;
+-Facilitar o acompanhamento das doações, permitindo que os usuários visualizem o impacto de suas contribuições. 
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
->
-> **Orientações**:
->
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 ## Justificativa
+A realização de doações tem apresentado um declínio ao longo do tempo. De acordo com informações do site nossacausa.com, embora a solidariedade aumente em períodos de crise, a prática de doações contínuas ainda representa um desafio significativo. Entre os indivíduos que não realizam doações, destacam-se como principais barreiras a falta de recursos financeiros e, principalmente, a desconfiança em relação à forma como o dinheiro é utilizado pelas organizações.
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
+Esse cenário impacta diretamente pessoas em situação de vulnerabilidade e instituições (ONGs) que dependem dessas contribuições para manter suas atividades. A ausência de transparência e de mecanismos confiáveis reduz o engajamento dos doadores, agravando ainda mais o problema.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
->
-> O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
->
-> **Orientações**:
->
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Diante disso, o desenvolvimento de uma aplicação digital se justifica como uma alternativa para minimizar essas barreiras. A proposta busca aumentar a confiabilidade, a transparência e a praticidade no processo de doação, facilitando a conexão entre doadores e instituições. Assim, a aplicação pretende contribuir para o aumento do volume de doações e para a melhoria do apoio a pessoas que necessitam de assistência.
 
 ## Público-Alvo
+Mercado: A solução proposta está inserida no mercado de tecnologia voltada ao impacto social, mais especificamente no segmento de plataformas digitais de doações. Esse mercado busca conectar pessoas dispostas a ajudar com indivíduos ou instituições que necessitam de apoio, utilizando a tecnologia para tornar o processo mais acessível, seguro e transparente.
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
+Público-Alvo: O público-alvo da aplicação é composto por pessoas e organizações que se identificam com causas sociais e desejam participar de ações solidárias. O sistema é voltado principalmente para indivíduos que querem doar de forma prática e confiável, além de instituições que necessitam de meios eficientes para arrecadar recursos.
+Exemplo: pessoas que desejam contribuir com dinheiro, roupas ou alimentos, e ONGs que promovem campanhas sociais.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Descreva o mercado para o qual a solução está sendo desenvolvida, detalhando um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc. Adicione informações sobre o público-alvo por meio de uma descrição textual ou por meio do mapa de stakeholders, ou como o grupo achar mais conveniente.
->
-> **Orientações**:
->
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+Perfis de Usuários:
+Doadores: são pessoas com conhecimento básico a intermediário em tecnologia, acostumadas ao uso de smartphones e aplicativos. Buscam praticidade, segurança e transparência ao realizar doações, principalmente financeiras, além de desejarem acompanhar o destino de suas contribuições.
+Exemplo: um usuário que realiza doações online para campanhas ou vaquinhas solidárias.
+
+ONGs e Instituições: Apresentam níveis variados de conhecimento tecnológico, desde equipes estruturadas até organizações com pouca experiência digital. Utilizam a plataforma para cadastrar campanhas, gerenciar doações e prestar contas aos doadores, necessitando de um sistema simples e acessível.
+Exemplo: uma ONG que organiza arrecadação de alimentos ou roupas para comunidades carentes.
+
+Beneficiários: São pessoas em situação de vulnerabilidade que recebem as doações. Em geral, possuem acesso limitado à tecnologia e dependem das instituições para intermediar o recebimento dos recursos, embora alguns possam utilizar diretamente a plataforma.
+Exemplo: famílias de baixa renda que recebem cestas básicas ou apoio financeiro por meio de campanhas.
+
+
+
 
 # Product Discovery
 
 ## Etapa de Entendimento
 
-**✳️✳️✳️ APRESENTE OS ARTEFATOS DA ETAPA  ✳️✳️✳️**
+[Matriz CSD:](images/matrizcsd.png)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nessa etapa, vamos trabalhar com a metdologia de Design Thinking para compreender com maior profundidade o problema a ser tratado. Nesse processo, vamos elaborar:
->
-> * **Matriz CSD**: também conhecida por Matriz de Alinhamento, é uma ferramenta utilizada no Design Thinking para organizar informações e facilitar o processo de tomada de decisão e solução de problemas;
-> * **Mapa de stakeholders**: ferramenta que nos permite compreender o grupo de pessoas e entidades que devemos estudar e conversar para entender mais sobre o problema
-> * **Entrevistas qualitativas**: série de entrevistas qualitativas para validar suposições e solucionar as dúvidas com as principais pessoas envolvidas;
-> * **Highlights de pesquisa**: um compilado do levantamento realizado por meio das entrevistas.
+[Mapa de stakeholders:](images/stakeholders.png)
+
 
 ## Etapa de Definição
 
@@ -100,7 +83,7 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 **✳️✳️✳️ APRESENTE OS DIAGRAMAS DE PERSONAS ✳️✳️✳️**
 
-![Exemplo de proposta de valor](images/exemplo-persona.png)
+![Persona1](images/persona1.png)
 
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
 >

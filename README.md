@@ -1,18 +1,21 @@
-# Nome do projeto
+# ConectaPlus
 
-Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
+A ConectaPlus é uma aplicação desenvolvida para conectar pessoas que necessitam de doações àquelas que desejam ajudar. Por meio da plataforma, é possível doar dinheiro, roupas, alimentos e outros itens, facilitando o apoio a quem mais precisa.Além disso, a ConectaPlus busca promover a solidariedade e tornar o processo de doação mais acessível, seguro e organizado, permitindo que doadores encontrem rapidamente pessoas ou instituições que realmente necessitam de ajuda. Dessa forma, a aplicação contribui para fortalecer o senso de comunidade e incentivar atitudes de empatia e colaboração na sociedade.
 
 ## Alunos integrantes da equipe
 
 * Luís Fernando de Sousa Dias
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-
+* Bernardo Arruda Leite
+* Daniel Oliveira de Menezes 
+* Erick Calixto David Silva
+* Larissa Fineli
+* Fernando de Oliveira Palheiros
+* Tais Ribeiro Pereira Dias
 ## Professores responsáveis
 
-* Nome completo do professor 1
-* Nome completo do professor 2
+* Danilo de Quadros Maia Filho
+* Diego Augusto de Faria Barros
+* Caroline Rhaian da Silva Jandre
 
 
 
