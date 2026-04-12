@@ -24,7 +24,7 @@ A documentação do projeto é estruturada da seguinte forma:
 6. Solução
 7. Referências Bibliográficas
 
-✅ [Documentação de Design Thinking (MIRO)](images/desingthinking.png)
+![Documentação de Design Thinking (MIRO)](images/desingthinking.png)
 
 # Contexto
 
@@ -72,16 +72,15 @@ Exemplo: famílias de baixa renda que recebem cestas básicas ou apoio financeir
 
 ## Etapa de Entendimento
 
-[Matriz CSD:](images/matrizcsd.png)
+![Matriz CSD:](images/matrizcsd.png)
 
-[Mapa de stakeholders:](images/stakeholders.png)
+![Mapa de stakeholders:](images/stakeholders.png)
 
 
 ## Etapa de Definição
 
 ### Personas
 
-**✳️✳️✳️ APRESENTE OS DIAGRAMAS DE PERSONAS ✳️✳️✳️**
 
 ![Persona1](images/persona1.png)
 
