@@ -28,7 +28,6 @@ A documentação do projeto é estruturada da seguinte forma:
 
 # Contexto
 
-Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa e público-alvo.
 
 ## Problema
 A realização de doações ainda apresenta dificuldades, principalmente quando se trata de doar diretamente para pessoas, organizações não governamentais (ONGs) ou campanhas solidárias, como vaquinhas. Muitas vezes, os doadores enfrentam insegurança quanto à confiabilidade dessas ações, além da falta de praticidade no processo.
@@ -84,16 +83,10 @@ Exemplo: famílias de baixa renda que recebem cestas básicas ou apoio financeir
 
 ![Persona1](images/persona1.png)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Relacione as personas identificadas no seu projeto e os respectivos mapas de empatia. Lembre-se que você deve ser enumerar e descrever precisamente e de forma personalizada todos os principais envolvidos com a solução almeja.
->
-> **Orientações**:
->
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Criar personas (Hotmart)](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
+![Persona1](images/persona2.png)
+
+![Persona1](images/persona3.png)
+
 
 # Product Design
 
@@ -101,33 +94,33 @@ Nesse momento, vamos transformar os insights e validações obtidos em soluçõe
 
 ## Histórias de Usuários
 
-Com base na análise das personas foram identificadas as seguintes histórias de usuários:
+1-Como doador, preciso encontrar projetos sociais próximos, para ajudar as pessoas da minha região.
 
-| EU COMO...`PERSONA` | QUERO/PRECISO ...`FUNCIONALIDADE`        | PARA ...`MOTIVO/VALOR`               |
-| --------------------- | ------------------------------------------ | -------------------------------------- |
-| Usuário do sistema   | Registrar minhas tarefas ⚠️ EXEMPLO ⚠️ | Não esquecer de fazê-las             |
-| Administrador         | Alterar permissões ⚠️ EXEMPLO ⚠️      | Permitir que possam administrar contas |
+2-Como vítima de uma enchente, preciso de um meio seguro para realizar uma vaquinha, para conseguir reconstruir minha casa.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão das necessidades de cada persona. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
->
-> **Orientações**:
->
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
+3-Como ONG, preciso de um local para divulgar e ampliar o alcance das minhas ações, para conseguir arrecadar dinheiro e ajudar pessoas.
+
+4-Como pessoa necessitada, preciso de um aplicativo acessível e intuitivo, para encontrar pontos de doação e pessoas que possam me ajudar.
+
+5-Como doador, preciso ver avaliações das ONGs, para garantir que minha doação será bem utilizada.
+
+6-Como ONG, preciso de uma maneira de encontrar mais pessoas necessitadas, para poder ajudá-las da melhor forma possível, seja com alimentos, roupas ou outros recursos.
+
+7-Como doador, preciso escolher o tipo de doação (dinheiro, alimento, roupa), para ajudar da forma que eu puder.
+
+8-Como pessoa necessitada, preciso de uma forma de pedir doações de material escolar, para que meu filho tenha os materiais necessários para ir à escola.
+
+9-Como vítima de um acidente, preciso realizar uma vaquinha de forma rápida e segura, para pagar uma cirurgia.
+
 
 ## Proposta de Valor
 
-**✳️✳️✳️ APRESENTE O DIAGRAMA DA PROPOSTA DE VALOR PARA CADA PERSONA ✳️✳️✳️**
+![Valor persona1](images/valorpersona1.png)
 
-##### Proposta de valor para Persona XPTO ⚠️ EXEMPLO ⚠️
+![Valor persona2](images/valorpersona2.png)
 
-![Exemplo de proposta de valor](images/exemplo-proposta-valor.png)
+![Valor persona3](images/valorpersona3.png)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> O mapa da proposta de valor é uma ferramenta que nos ajuda a definir qual tipo de produto ou serviço melhor atende às personas definidas anteriormente.
 
 ## Requisitos
 
