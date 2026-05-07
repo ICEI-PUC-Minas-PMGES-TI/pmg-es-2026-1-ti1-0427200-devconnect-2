@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crie sua Vaquinha!</title>
+  <link rel="stylesheet" href="criar-vaquinha.css">
+</head>
+<body>
+  <!--Cabeçalho-->
+  <header>
+    <nav>
+      <a href="#">ConectaPlus</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Crie sua Vaquinha!</h1>
+
+    <!--Formulários-->
+    <form id="formVaquinha">
+    
+      <div class="titulo">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" placeholder="Digite o título da vaquinha" maxlength="20">
+      </div>
+
+      <div class="descricao">
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" placeholder="Digite a descrição da vaquinha" maxlength="100">
+      </div>
+
+      <div class="tipo_doacao">
+        <label for="tipo_doacao">Tipo de doação:</label>
+        <input type="text" id="tipo_doacao" placeholder="Informe o tipo de doação que desejaria receber"  maxlength="50">
+      </div>
+
+      <div class="meta">
+        <label for="meta">Meta:</label>
+        <input type="number" id="meta" placeholder="Informe a meta de doações">
+      </div>
+
+      <div class="informacoes">
+        <label for="informacoes">Informações:</label>
+        <input type="text" id="informacoes" placeholder="Adicione informações sobre a vaquinha" maxlength="200">
+      </div>
+
+      <div class="imagem">
+        <label for="imagem">Imagem:</label>
+        <input type="file" id="imagem" placeholder="Adicione uma imagem para sua vaquinha">
+      </div>
+
+      <button type="submit">Criar</button>
+
+    </form>
+  </main>
+  <!--JavaScript-->
+  <script src="criar-vaquinha.js"></script>
+
+</body>
+</html>
