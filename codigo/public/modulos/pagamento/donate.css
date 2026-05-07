@@ -54,7 +54,11 @@ body {
     color: white;
 }
 
+<<<<<<< HEAD
 .valor{
     position: relative;
     top: -10px
 }
+=======
+.valor{}
+>>>>>>> master
