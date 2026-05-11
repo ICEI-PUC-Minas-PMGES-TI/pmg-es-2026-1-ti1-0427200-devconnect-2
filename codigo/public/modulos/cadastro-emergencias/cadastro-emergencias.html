@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Emergencia</title>
+    <link rel="stylesheet" href="cadastro-emergencias.css">
+</head>
+<body>
+
+<!--Cabecalho-->
+<header>
+    <nav>
+        <a href="#">DevConnect</a>
+    </nav>
+</header>
+
+<!--formulario-->
+<main>
+    <h1>Cadastrar Emergencia</h1>
+    <br>
+
+    <form id="formEmergencia">
+
+        <label for="titulo">Titulo:</label><br>
+        <input type="text" id="titulo" placeholder="Titulo da emergencia"><br><br>
+
+        <label for="descricao">Descricao:</label><br>
+        <textarea id="descricao" placeholder="Descreva a emergencia"></textarea><br><br>
+
+        <label for="categoria">Categoria:</label><br>
+        <select id="categoria">
+            <option value="">Selecione</option>
+            <option value="Moradia">Moradia</option>
+            <option value="Alimentacao">Alimentacao</option>
+            <option value="Saude">Saude</option>
+        </select><br><br>
+
+        <!-- falta adicionar mais campos aqui -->
+
+        <button type="submit">Cadastrar</button>
+
+    </form>
+</main>
+
+<script src="cadastro-emergencias.js"></script>
+
+</body>
+</html>
