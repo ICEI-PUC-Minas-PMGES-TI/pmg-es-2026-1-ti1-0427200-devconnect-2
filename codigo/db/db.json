@@ -21,5 +21,20 @@
       "email": "rommel@gmail.com",
       "id": 3
     }
+  ],
+  "emergencias": [
+    {
+      "id": 1,
+      "titulo": "Familias desabrigadas pelas chuvas",
+      "descricao": "Arrecadacao de alimentos, roupas e itens de higiene para familias que perderam suas casas.",
+      "meta": 8000,
+      "arrecadado": 3200,
+      "categoria": "Moradia",
+      "tipoDoacao": "ambos",
+      "urgencia": "alta",
+      "dataLimite": "2026-05-25",
+      "imagem": "img/emergencia1.jpg",
+      "dataCriacao": "2026-05-10"
+    }
   ]
 }
