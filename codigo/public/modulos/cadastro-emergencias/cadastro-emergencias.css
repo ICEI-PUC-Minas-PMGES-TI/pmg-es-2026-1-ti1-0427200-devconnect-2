@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
 a {
     text-decoration: none;
     color: white;
@@ -15,5 +20,32 @@ nav {
 }
 
 main {
+    width: 500px;
+    margin: 30px;
+    background-color: white;
     padding: 20px;
 }
+
+h1 {
+    color: green;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* falta ajustar tamanho do botao e espacamento */

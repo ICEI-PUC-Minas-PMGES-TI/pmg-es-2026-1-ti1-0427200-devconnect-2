@@ -17,23 +17,48 @@
 
 <main>
     <h1>Cadastro de Emergencia</h1>
+    <p>Preencha os campos abaixo</p>
+    <br>
 
     <form id="formEmergencia">
 
-        <label>Titulo</label><br>
-        <input type="text" id="titulo"><br><br>
+        <label for="titulo">Titulo:</label><br>
+        <input type="text" id="titulo" placeholder="Titulo da emergencia" maxlength="60"><br><br>
 
-        <label>Descricao</label><br>
-        <textarea id="descricao"></textarea><br><br>
+        <label for="descricao">Descricao:</label><br>
+        <textarea id="descricao" placeholder="Descreva a emergencia" maxlength="300"></textarea><br><br>
 
-        <label>Categoria</label><br>
+        <label for="categoria">Categoria:</label><br>
         <select id="categoria">
             <option value="">Selecione</option>
             <option value="Moradia">Moradia</option>
+            <option value="Alimentacao">Alimentacao</option>
             <option value="Saude">Saude</option>
+            <option value="Educacao">Educacao</option>
+            <option value="Outro">Outro</option>
         </select><br><br>
 
-        <!-- adicionar mais campos -->
+        <label for="tipoDoacao">Tipo de doacao:</label><br>
+        <select id="tipoDoacao">
+            <option value="">Selecione</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="itens">Itens</option>
+            <option value="ambos">Dinheiro e Itens</option>
+        </select><br><br>
+
+        <label for="meta">Meta (R$):</label><br>
+        <input type="number" id="meta" placeholder="Ex: 5000" min="1"><br><br>
+
+        <label for="urgencia">Urgencia:</label><br>
+        <select id="urgencia">
+            <option value="">Selecione</option>
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baixa">Baixa</option>
+        </select><br><br>
+
+        <label for="dataLimite">Data limite:</label><br>
+        <input type="date" id="dataLimite"><br><br>
 
         <button type="submit">Cadastrar</button>
 
