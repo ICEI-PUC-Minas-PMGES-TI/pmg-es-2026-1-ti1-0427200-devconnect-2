@@ -9,7 +9,7 @@ body {
 }
 
 .background {
-    height: auto; /* Deixei auto para se ajustar ao conteúdo */
+    height: auto;
     min-height: 400px;
     width: 600px;
     background-color: rgb(255, 255, 255);
@@ -60,7 +60,6 @@ body {
     background-color: rgb(110, 110, 105);
 }
 
-/* Estilo do Campo de Valor */
 .valor_container {
     display: flex;
     align-items: center;
@@ -84,7 +83,6 @@ body {
     outline: none;
 }
 
-/* Botão Doar Final */
 .botao_doar {
     background-color: rgb(49, 150, 49);
     color: white;
