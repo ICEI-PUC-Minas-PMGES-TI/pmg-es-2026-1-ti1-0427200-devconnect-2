@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +9,23 @@
 <body>
     <div class="background">
         <header class="pos_center nome_vaquinha">Doação Vaquinha</header>
-        <main>
-            <article class="">
-                <p class="formatacao">Forma Pagamento: </p>
-                <article class="formas_pagamento grid_nav">
-                    <li class="pos_center pagamento_button">Teste PIX</li>
-                    <li class="pos_center pagamento_button">Teste Debito</li>
-                    <li class="pos_center pagamento_button">Teste Credito</li>
-                </article>
-                <p class="formatacao">Informe o valor que deseja doar:</p>
-                <article class="valor">
+        <main class="padding_container">
+            <p class="formatacao">Forma de Pagamento:</p>
+            <div class="formas_pagamento grid_nav">
+                <button class="pos_center pagamento_button">PIX</button>
+                <button class="pos_center pagamento_button">Débito</button>
+                <button class="pos_center pagamento_button">Crédito</button>
+            </div>
 
-                </article>
-            </article>
+            <p class="formatacao">Informe o valor que deseja doar:</p>
+            <div class="valor_container">
+                <span class="simbolo_monetario">R$</span>
+                <input type="number" class="input_valor" placeholder="0,00">
+            </div>
+
+            <div class="pos_center">
+                <button class="botao_doar">Confirmar Doação</button>
+            </div>
         </main>
     </div>
 </body>
