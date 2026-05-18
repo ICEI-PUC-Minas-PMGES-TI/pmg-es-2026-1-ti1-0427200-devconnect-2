@@ -1,60 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crie sua Vaquinha!</title>
-  <link rel="stylesheet" href="criar-vaquinha.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Criar Vaquinha — ConectaPlus</title>
+  <link rel="stylesheet" href="criar-vaquinha.css"/>
 </head>
 <body>
-  <!--Cabeçalho-->
-  <header>
-    <nav>
-      <a href="#">ConectaPlus</a>
-    </nav>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="../../../index.html" class="btn-voltar">&#8592;</a>
+    <div class="header-texto">
+      <span class="app-nome">ConectaPlus</span>
+      <span class="header-titulo">Crie sua vaquinha</span>
+    </div>
   </header>
-  <main>
-    <h1>Crie sua Vaquinha!</h1>
 
-    <!--Formulários-->
-    <form id="formVaquinha">
-    
-      <div class="titulo">
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" placeholder="Digite o título da vaquinha" maxlength="20">
+  <!-- FORMULÁRIO -->
+  <main class="container">
+
+    <form id="form-vaquinha">
+
+      <div class="campo">
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" placeholder="Ex: Ajuda para cirurgia do João" />
+        <span class="erro" id="erro-titulo"></span>
       </div>
 
-      <div class="descricao">
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" placeholder="Digite a descrição da vaquinha" maxlength="100">
+      <div class="campo">
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" rows="3" placeholder="Conte um pouco sobre a causa..."></textarea>
+        <span class="erro" id="erro-descricao"></span>
       </div>
 
-      <div class="tipo_doacao">
-        <label for="tipo_doacao">Tipo de doação:</label>
-        <input type="text" id="tipo_doacao" placeholder="Informe o tipo de doação que desejaria receber"  maxlength="50">
+      <div class="campo">
+        <label for="tipo">Tipo de doação</label>
+        <select id="tipo">
+          <option value="">Selecione...</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Roupas">Roupas</option>
+          <option value="Alimentos">Alimentos</option>
+          <option value="Outros">Outros</option>
+        </select>
+        <span class="erro" id="erro-tipo"></span>
       </div>
 
-      <div class="meta">
-        <label for="meta">Meta:</label>
-        <input type="number" id="meta" placeholder="Informe a meta de doações">
+      <div class="campo">
+        <label for="meta">Meta</label>
+        <input type="text" id="meta" placeholder="Ex: R$ 1.000 ou 50 agasalhos" />
+        <span class="erro" id="erro-meta"></span>
       </div>
 
-      <div class="informacoes">
-        <label for="informacoes">Informações:</label>
-        <input type="text" id="informacoes" placeholder="Adicione informações sobre a vaquinha" maxlength="200">
+      <div class="campo">
+        <label for="informacoes">Informações adicionais</label>
+        <textarea id="informacoes" rows="3" placeholder="Dados de contato, prazo, como a doação será usada..."></textarea>
       </div>
 
-      <div class="imagem">
-        <label for="imagem">Imagem:</label>
-        <input type="file" id="imagem" placeholder="Adicione uma imagem para sua vaquinha">
+      <div class="campo">
+        <label>Imagem da vaquinha</label>
+        <label class="upload-imagem" for="imagem">
+          <img id="preview" src="" alt="" />
+          <div id="placeholder-upload">
+            <span class="icone-camera">&#128247;</span>
+            <span>Clique para adicionar uma foto</span>
+          </div>
+        </label>
+        <input type="file" id="imagem" accept="image/*" style="display:none"/>
       </div>
 
-      <button type="submit">Criar</button>
+      <button type="submit" class="btn-criar">Criar Vaquinha</button>
 
     </form>
-  </main>
-  <!--JavaScript-->
-  <script src="criar-vaquinha.js"></script>
 
+    <!-- MENSAGEM DE SUCESSO (oculta por padrão) -->
+    <div id="mensagem-sucesso" class="mensagem-sucesso oculto">
+      <div class="icone-sucesso">&#10003;</div>
+      <h2>Vaquinha criada com sucesso!</h2>
+      <p>Sua vaquinha foi salva e já está disponível.</p>
+      <button class="btn-criar" onclick="novaVaquinha()">Criar outra vaquinha</button>
+    </div>
+
+  </main>
+
+  <script src="criar-vaquinha.js"></script>
 </body>
 </html>
