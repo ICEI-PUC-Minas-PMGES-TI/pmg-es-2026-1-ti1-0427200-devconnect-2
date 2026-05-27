@@ -137,3 +137,15 @@ function(event){
     }
 
 });
+const formPesquisa = document.getElementById("formPesquisa");
+
+formPesquisa.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const pesquisa = document.getElementById("inputPesquisa").value;
+
+    window.location.href =
+    "http://127.0.0.1:5501/codigo/public/modulos/pesquisa/index.html";
+
+});
