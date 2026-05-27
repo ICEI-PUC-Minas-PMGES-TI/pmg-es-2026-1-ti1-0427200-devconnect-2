@@ -26,9 +26,34 @@ main {
     padding: 25px;
 }
 
-h1 {
-    color: green;
-    margin-bottom: 15px;
+.topo {
+    margin-bottom: 20px;
 }
 
-/* arrumar estilo das informacoes depois */
+h1 {
+    color: green;
+}
+
+h2 {
+    color: green;
+    margin-bottom: 10px;
+}
+
+.info {
+    margin-bottom: 20px;
+}
+
+.info p {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.contato {
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+}
+
+.contato p {
+    margin-bottom: 8px;
+    font-size: 15px;
+}
