@@ -20,6 +20,60 @@
       "nome": "Rommel",
       "email": "rommel@gmail.com",
       "id": 3
-    }
+    },
+    {
+      "usuario": {
+        "fotoUsuario": "",
+        "nomeUsuario": "Usuário",
+        "cargoUsuario": "Cargo"
+      },
+      "pagina": {
+        "tituloPagina": "Histórico de doações",
+        "descricaoPagina": "Acompanhe suas doações realizadas"
+      },
+      "resumoDoacoes": {
+        "totalDoado": "R$0,00",
+        "ultimaDoacao": "15/05/2024",
+        "projetosApoiados": 0
+      },
+      "historicoDoacoes": [
+        {
+          "dataDoacao": "00/00/0000",
+          "nomeProjeto": "Campanha do Agasalho",
+          "valorDoacao": "R$0,00",
+          "formaPagamento": "PIX",
+          "statusDoacao": "Concluída"
+        }
+      ]
+    },
+    [
+      {
+        "id": 1,
+        "tag": "Saúde",
+        "titulo": "Tratamento do Max",
+        "descricao": "Ajude no custeio das cirurgias e remédios do nosso guerreiro.",
+        "imagem": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500",
+        "progresso_porcentagem": 70,
+        "valor_arrecadado": 7000.00
+      },
+      {
+        "id": 2,
+        "tag": "Social",
+        "titulo": "Prato Cheio Comunidade",
+        "descricao": "Distribuição de marmitas para famílias em situação de vulnerabilidade.",
+        "imagem": "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=500",
+        "progresso_porcentagem": 45,
+        "valor_arrecadado": 4500.00
+      },
+      {
+        "id": 3,
+        "tag": "Educação",
+        "titulo": "Livros para o Futuro",
+        "descricao": "Projeto para reformar a biblioteca comunitária do bairro.",
+        "imagem": "https://images.unsplash.com/photo-1448521787991-ed7bbaae773c?w=500",
+        "progresso_porcentagem": 90,
+        "valor_arrecadado": 9000.00
+      }
+    ]
   ]
 }
