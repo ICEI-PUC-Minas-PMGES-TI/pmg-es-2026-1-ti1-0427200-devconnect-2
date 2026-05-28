@@ -2,19 +2,21 @@ var nome = "Usuário";
 var ranking = "Bronze";
 
 
-var doacoes = [];
+var doacoes =
+  JSON.parse(localStorage.getItem("doacoes")) || []
 
 
-var vaquinhas = [];
+var vaquinhas =   //puxa automaticamente as vaquinhas criadas
+  JSON.parse(localStorage.getItem("vaquinhas")) || []
 
 document.getElementById("username").textContent =
-  "Olá, " + nome + "!";
+  "Olá, " + nome + "!";   //trocar o texto do html
 
 document.getElementById("ranking").textContent =
   ranking;
 
 
-function criarCard(titulo, imagem = "") {
+function criarCard(titulo, imagem = "") {     //devolver card pronto 
 
   var imagemHTML = imagem
     ? '<img src="' + imagem + '" class="card-img">'
@@ -63,19 +65,26 @@ if (doacoes.length > 0) {
 
 
 
-if (vaquinhas.length > 0) {
+if (vaquinhas.length > 0) 
 
   var vaqContainer =
-    document.getElementById("vaquinhas-container");
+  document.getElementById("vaquinhas-container");
+
+if (vaquinhas.length > 0) {
 
   vaqContainer.innerHTML =
-    '<div class="donations-grid">';
+    '<div class="donations-grid"></div>';
 
-  for (var i = 0; i < vaquinhas.length; i++) {
+  var grid =
+    vaqContainer.querySelector(".donations-grid");
 
-    vaqContainer.innerHTML +=
-      criarCard(vaquinhas[i]);
-  }
+  vaquinhas.forEach(function(vaquinha) {
 
-  vaqContainer.innerHTML += '</div>';
+    grid.innerHTML += criarCard(
+      vaquinha.titulo,
+      vaquinha.imagem
+    );
+
+  });
+
 }
