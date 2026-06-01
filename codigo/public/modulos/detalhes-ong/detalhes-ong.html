@@ -24,43 +24,50 @@
         <div class="row justify-content-center">
             <div class="col-lg-7">
 
-                <div class="card shadow-sm p-4">
+                <!-- Card da ONG -->
+                <div class="card shadow-sm mb-4">
 
-                    <div class="mb-3">
-                        <h2 id="nomeOng">Carregando...</h2>
-                        <span id="verificada"></span>
+                    <div class="card-header-ong p-4">
+                        <h2 id="nomeOng" class="text-white mb-1">Carregando...</h2>
+                        <span id="verificada" class="badge-verificada"></span>
                     </div>
 
-                    <div class="mb-3">
-                        <p><strong>Categoria:</strong> <span id="categoria"></span></p>
+                    <div class="p-4">
+
+                        <div class="mb-4">
+                            <span id="categoria" class="badge-categoria"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <h6 class="label-titulo">Sobre a ONG</h6>
+                            <p id="descricao" class="text-muted"></p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h6 class="label-titulo">Missao</h6>
+                            <p id="missao" class="text-muted"></p>
+                        </div>
+
+                        <hr>
+
+                        <h6 class="label-titulo mb-3">Informacoes de Contato</h6>
+
+                        <p class="mb-1"><strong>Email:</strong> <span id="email"></span></p>
+                        <p class="mb-1"><strong>Telefone:</strong> <span id="telefone"></span></p>
+                        <p class="mb-4"><strong>Endereco:</strong> <span id="endereco"></span></p>
+
+                        <hr>
+
+                        <p class="text-muted small">Cadastrada em: <span id="dataCadastro"></span></p>
+
                     </div>
+                </div>
 
-                    <div class="mb-3">
-                        <p><strong>Descricao:</strong></p>
-                        <p id="descricao" class="text-muted"></p>
-                    </div>
+                <!-- Emergencias da ONG -->
+                <h5 class="mb-3 titulo-emergencias">Emergencias Cadastradas</h5>
 
-                    <div class="mb-3">
-                        <p><strong>Missao:</strong></p>
-                        <p id="missao" class="text-muted"></p>
-                    </div>
-
-                    <hr>
-
-                    <h5 class="mb-3">Contato</h5>
-
-                    <div class="mb-2">
-                        <p><strong>Email:</strong> <span id="email"></span></p>
-                    </div>
-
-                    <div class="mb-2">
-                        <p><strong>Telefone:</strong> <span id="telefone"></span></p>
-                    </div>
-
-                    <div class="mb-2">
-                        <p><strong>Endereco:</strong> <span id="endereco"></span></p>
-                    </div>
-
+                <div id="listaEmergencias">
+                    <p class="text-muted">Carregando emergencias...</p>
                 </div>
 
             </div>
