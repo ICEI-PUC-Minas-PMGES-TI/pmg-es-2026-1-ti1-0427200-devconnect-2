@@ -22,7 +22,57 @@
       "id": "3"
     }
   ],
-  "vaquinhas": [],
-  "ongs": [],
+  "vaquinhas": [
+    {
+      "id": "1",
+      "titulo": "Ajuda para o tratamento do Totó",
+      "descricao": "O Totó precisa de uma cirurgia urgente na patinha após um acidente. Qualquer valor nos ajuda muito!",
+      "tag": "Animal",
+      "valor_arrecadado": 200,
+      "meta": 1000,
+      "progresso_porcentagem": 20,
+      "imagem": "https://images.unsplash.com/photo-1532629345422-7515f3d16bb8?w=500&auto=format&fit=crop&q=60",
+      "autor_email": "contato@ajudeototo.com"
+    }
+  ],
+  "ongs": [
+    {
+      "id": "ong-1",
+      "nome": "Instituto Amigos da Natureza",
+      "cnpj": "12.345.678/0001-99",
+      "telefone": "(11) 99999-8888",
+      "email": "contato@natureza.org",
+      "causa": "Meio Ambiente",
+      "valor_arrecadado": 50
+    }
+  ],
+  "doacoes": [
+    {
+      "idPagamento": "PAG-518002",
+      "destinoTipo": "vaquinhas",
+      "destinoId": "1",
+      "destinoTitulo": "Ajuda para o tratamento do Totó",
+      "valorDoado": 50,
+      "formaPagamento": "Pix",
+      "doadorNome": "Teste",
+      "doadorCpf": "12312412",
+      "doadorEmail": "ercik@gmail.com",
+      "dataHora": "2026-06-10T21:06:01.290Z",
+      "id": "OEI3LDWn8aI"
+    },
+    {
+      "idPagamento": "PAG-648177",
+      "destinoTipo": "ongs",
+      "destinoId": "ong-1",
+      "destinoTitulo": "Instituto Amigos da Natureza",
+      "valorDoado": 50,
+      "formaPagamento": "Pix",
+      "doadorNome": "Erick",
+      "doadorCpf": "1234567890",
+      "doadorEmail": "erick@gmail.com",
+      "dataHora": "2026-06-10T21:10:47.863Z",
+      "id": "GYk1cQ92lxE"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
