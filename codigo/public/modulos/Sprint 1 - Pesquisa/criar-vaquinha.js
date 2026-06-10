@@ -1,5 +1,3 @@
-//preview da imagem
-//A imagem é convertida para base64 (um texto longo que representa a imagem) e esse texto é salvo no localStorage junto com os outros dados.
 document.getElementById("imagem").addEventListener("change", function () {
   var arquivo = this.files[0] //guardara os arquivos escolhidos
 
@@ -25,7 +23,6 @@ document.getElementById("imagem").addEventListener("change", function () {
 document.getElementById("form-vaquinha").addEventListener("submit", function (e) {
   e.preventDefault() //cancelar o comportamento padrao da pagina para nao recarregar
 
-  //.value pega o valor digitado e trim remove espaços extras " oi  " -> "oi"
   var titulo      = document.getElementById("titulo").value.trim()
   var descricao   = document.getElementById("descricao").value.trim()
   var tipo        = document.getElementById("tipo").value

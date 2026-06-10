@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 550px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    padding: 30px;
+}
+
+h2 {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.wrapper-tabs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.radio-tab {
+    display: none;
+}
+
+.label-tab {
+    padding: 12px 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #64748b;
+    border-bottom: 2px solid #e2e8f0;
+    flex: 1;
+    text-align: center;
+}
+
+.radio-tab:checked + .label-tab {
+    color: #059669;
+    border-bottom: 2px solid #059669;
+}
+
+.content-tab {
+    width: 100%;
+    display: none;
+    padding-top: 25px;
+    order: 1;
+}
+
+#tab-vaquinha:checked ~ .content-vaquinha,
+#tab-ong:checked ~ .content-ong {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #334155;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus, 
+.form-group select:focus {
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #059669;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #047857;
+}
+
+.footer-text {
+    text-align: center;
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 20px;
+}
