@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,10 @@
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+
+    <div id="toast-container"></div>
 
     <div class="login-container">
         <div class="login-banner">
@@ -28,7 +32,7 @@
                 <p id="form-subtitle">Faça parte dessa corrente de solidariedade.</p>
             </div>
 
-            <form action="#" id="auth-form">
+            <form id="auth-form" autocomplete="off" onsubmit="event.preventDefault(); return false;">
                 <div class="input-group" id="group-name">
                     <label for="name">Nome Completo</label>
                     <div class="input-wrapper">
@@ -56,7 +60,8 @@
                 <div class="input-group">
                     <div class="label-flex">
                         <label for="password">Senha</label>
-                        <a href="#" id="forgot-password" class="helper-link" style="display: none;">Esqueceu a senha?</a>
+                        <a href="javascript:void(0);" id="forgot-password" class="helper-link"
+                            style="display: none;">Esqueceu a senha?</a>
                     </div>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-lock"></i>
@@ -74,14 +79,17 @@
 
                 <div class="terms-wrapper" id="group-terms">
                     <input type="checkbox" id="terms" required>
-                    <label for="terms">Aceito os <a href="#">Termos de Uso</a> e <a href="#">Políticas de Privacidade</a>.</label>
+                    <label for="terms">Aceito os <a href="javascript:void(0);">Termos de Uso</a> e <a
+                            href="javascript:void(0);">Políticas de Privacidade</a>.</label>
                 </div>
 
-                <button type="submit" class="btn-submit" id="btn-submit">Cadastrar e Ajudar</button>
+                <button type="submit" class="btn-submit" id="btn-submit" data-mode="cadastro">Cadastrar e
+                    Ajudar</button>
             </form>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

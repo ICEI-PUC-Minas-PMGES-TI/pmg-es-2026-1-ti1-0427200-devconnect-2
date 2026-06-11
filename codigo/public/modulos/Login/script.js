@@ -1,5 +1,33 @@
 const API_URL = 'http://localhost:3000/usuarios';
 
+function mostrarToast(mensagem, tipo = 'success') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'toast-backdrop';
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${tipo}`;
+    
+    const icone = tipo === 'success' ? '💚' : '⚠️';
+    toast.innerHTML = `<span>${icone}</span> <span>${mensagem}</span>`;
+
+    backdrop.appendChild(toast);
+    container.appendChild(backdrop);
+
+    setTimeout(() => {
+        backdrop.classList.add('show');
+        toast.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+        backdrop.classList.remove('show');
+        toast.classList.remove('show');
+        setTimeout(() => backdrop.remove(), 300);
+    }, 2000); // 2 segundos cravados em tela
+}
+
 function switchTab(mode) {
     const tabs = document.querySelectorAll('.tab-btn');
     const groupName = document.getElementById('group-name');
@@ -39,6 +67,8 @@ function switchTab(mode) {
         
         btnSubmit.style.backgroundColor = 'var(--verde-medio)';
         btnSubmit.style.boxShadow = '0 4px 12px rgba(45, 122, 69, 0.2)';
+        
+        btnSubmit.setAttribute('data-mode', 'login');
         btnSubmit.dataset.mode = 'login';
     } else {
         tabs[0].classList.add('active');
@@ -61,14 +91,19 @@ function switchTab(mode) {
         
         btnSubmit.style.backgroundColor = 'var(--ambar)';
         btnSubmit.style.boxShadow = '0 4px 12px rgba(245, 166, 35, 0.2)';
+        
+        btnSubmit.setAttribute('data-mode', 'cadastro');
         btnSubmit.dataset.mode = 'cadastro';
     }
 }
 
 document.getElementById('auth-form').addEventListener('submit', async function(event) {
-    event.preventDefault();
+    event.preventDefault(); 
+    event.stopPropagation();
 
-    const mode = document.getElementById('btn-submit').dataset.mode || 'cadastro';
+    const btnSubmit = document.getElementById('btn-submit');
+    const mode = btnSubmit.getAttribute('data-mode') || btnSubmit.dataset.mode || 'cadastro';
+    
     const email = document.getElementById('email').value;
     const senha = document.getElementById('password').value;
 
@@ -78,21 +113,37 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
         const confirmarSenha = document.getElementById('confirm-password').value;
 
         if (senha !== confirmarSenha) {
-            alert('As senhas não coincidem!');
+            mostrarToast('As senhas não coincidem!', 'error');
             return;
         }
 
-        const novoUsuario = {
-            nome: nome,
-            cpf: cpf,
-            email: email,
-            senha: senha,
-            token: "",
-            doacoes: [],
-            criacoes: []
-        };
-
         try {
+            const verificarEmail = await fetch(`${API_URL}?email=${email}`);
+            const emailExistente = await verificarEmail.json();
+
+            const verificarCpf = await fetch(`${API_URL}?cpf=${cpf}`);
+            const cpfExistente = await verificarCpf.json();
+
+            if (emailExistente.length > 0) {
+                mostrarToast('Este e-mail já está cadastrado!', 'error');
+                return;
+            }
+
+            if (cpfExistente.length > 0) {
+                mostrarToast('Este CPF já está cadastrado!', 'error');
+                return;
+            }
+
+            const novoUsuario = {
+                nome: nome,
+                cpf: cpf,
+                email: email,
+                senha: senha,
+                token: "",
+                doacoes: [],
+                criacoes: []
+            };
+
             const resposta = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
@@ -102,24 +153,29 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
             });
 
             if (resposta.ok) {
-                alert('Cadastro realizado com sucesso!');
-                document.getElementById('auth-form').reset();
-                switchTab('login');
+                mostrarToast('Cadastro realizado com sucesso!', 'success');
+                
+                // Segura o formulário ativo até a animação acabar
+                setTimeout(() => {
+                    document.getElementById('auth-form').reset();
+                    switchTab('login');
+                }, 2200);
             } else {
-                alert('Erro ao realizar cadastro.');
+                mostrarToast('Erro ao realizar cadastro no banco de dados.', 'error');
             }
         } catch (error) {
             console.error('Erro de rede:', error);
-            alert('Não foi possível conectar ao servidor backend (json-server).');
+            mostrarToast('Não foi possível conectar ao servidor backend.', 'error');
         }
-    } else {
+    } else if (mode === 'login') {
         try {
             const resposta = await fetch(`${API_URL}?email=${email}&senha=${senha}`);
+            
+            // CORREÇÃO DA LINHA QUEBRADA: Sintaxe limpa sem atribuições duplas fantasmas
             const usuariosEncontrados = await resposta.json();
 
             if (usuariosEncontrados.length > 0) {
                 const usuarioLogado = usuariosEncontrados[0];
-                
                 const tokenGerado = crypto.randomUUID();
 
                 const atualizacaoToken = await fetch(`${API_URL}/${usuarioLogado.id}`, {
@@ -132,16 +188,33 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
 
                 if (atualizacaoToken.ok) {
                     sessionStorage.setItem('usuarioToken', tokenGerado);
-                    alert(`Login realizado com sucesso! Bem-vindo, ${usuarioLogado.nome}.`);
+                    mostrarToast(`Login realizado com sucesso! Bem-vindo, ${usuarioLogado.nome}.`, 'success');
+                    
+                    // Como você pediu para continuar na tela atual sem redirecionamento,
+                    // limpamos apenas os campos de input de forma segura após o Toast sumir
+                    setTimeout(() => {
+                        document.getElementById('email').value = '';
+                        document.getElementById('password').value = '';
+                    }, 2200);
                 } else {
-                    alert('Erro ao gerar sessão de segurança. Tente novamente.');
+                    mostrarToast('Erro ao gerar sessão de segurança. Tente novamente.', 'error');
                 }
             } else {
-                alert('E-mail ou senha incorretos.');
+                mostrarToast('E-mail ou senha incorretos.', 'error');
             }
         } catch (error) {
             console.error('Erro de rede:', error);
-            alert('Não foi possível conectar ao servidor backend (json-server).');
+            mostrarToast('Não foi possível conectar ao servidor backend.', 'error');
         }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    switchTab('cadastro');
+});
+
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#') {
+        e.preventDefault();
     }
 });

@@ -20,6 +20,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let itemAtual = null;
 
+    // TOAST CONFIGURADO PARA FICAR EXATAMENTE 2 SEGUNDOS EM TELA
+    function mostrarToast(mensagem, tipo = 'success') {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+
+        const backdrop = document.createElement('div');
+        backdrop.className = 'toast-backdrop';
+
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${tipo}`;
+        
+        const icone = tipo === 'success' ? '💚' : '⚠️';
+        toast.innerHTML = `<span>${icone}</span> <span>${mensagem}</span>`;
+
+        backdrop.appendChild(toast);
+        container.appendChild(backdrop);
+
+        setTimeout(() => {
+            backdrop.classList.add('show');
+            toast.classList.add('show');
+        }, 10);
+
+        // Aguarda os 2 segundos (2000ms) e remove suavemente
+        setTimeout(() => {
+            backdrop.classList.remove('show');
+            toast.classList.remove('show');
+            setTimeout(() => backdrop.remove(), 300);
+        }, 2000);
+    }
+
     async function verificarDestino() {
         if (!tipoItem || !idItem) return;
         try {
@@ -34,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             txtTituloResumo.textContent = nomeDestino;
             txtTagResumo.textContent = tagDestino;
         } catch (error) {
-            alert("⚠️ Erro: Este destino (Vaquinha ou ONG) não foi encontrado no banco de dados.");
+            mostrarToast("Este destino (Vaquinha ou ONG) não foi encontrado no banco de dados.", "error");
         }
     }
 
@@ -52,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = inputUserEmail.value.trim();
 
         if (!nome || !cpf || !email) {
-            alert("Por favor, preencha Nome, CPF e E-mail no topo da página.");
+            mostrarToast("Por favor, preencha Nome, CPF e E-mail no topo da página.", "error");
             return null;
         }
         return { nome, cpf, email };
@@ -64,11 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!dadosUsuario) return false;
         if (isNaN(valorDoacao) || valorDoacao < 5) {
-            alert('O valor mínimo para doação é R$ 5,00');
+            mostrarToast('O valor mínimo para doação é R$ 5,00', "error");
             return false;
         }
         if (!itemAtual) {
-            alert("Não é possível processar a doação para um destino inexistente.");
+            mostrarToast("Não é possível processar a doação para um destino inexistente.", "error");
             return false;
         }
 
@@ -86,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const registroDoacao = {
             idPagamento: idPagamentoUnico,
-            destinoTipo: tipoItem,       
-            destinoId: idItem,           
+            destinoTipo: tipoItem,      
+            destinoId: idItem,          
             destinoTitulo: nomeDestino,
             valorDoado: valorDoacao,
             formaPagamento: dadosFormaPagamento,
@@ -114,11 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 itemAtual.valor_arrecadado = novoSaldo;
                 return idPagamentoUnico; 
             } else {
-                alert("Erro ao gravar os dados no servidor.");
+                mostrarToast("Erro ao gravar os dados no servidor.", "error");
                 return false;
             }
         } catch (error) {
-            alert("Erro de conexão com o banco de dados.");
+            mostrarToast("Erro de conexão com o banco de dados.", "error");
             return false;
         }
     }
@@ -126,23 +156,36 @@ document.addEventListener('DOMContentLoaded', () => {
     donationInput.addEventListener('input', atualizarValoresNaTela);
 
     if (btnPix) {
-        btnPix.addEventListener('click', async () => {
+        btnPix.addEventListener('click', async (e) => {
+            e.preventDefault(); // Previne qualquer comportamento indesejado
             const idSucesso = await processarTransacaoCompleta("Pix");
             if (idSucesso) {
-                alert(`✅ Pix Gerado!\n\nID do Pagamento: ${idSucesso}`);
-                inputUserName.value = ""; inputUserCpf.value = ""; inputUserEmail.value = "";
+                mostrarToast(`Pix Gerado com Sucesso! ID: ${idSucesso}`, "success");
+                
+                // Limpa os campos após os 2 segundos do toast sumir
+                setTimeout(() => {
+                    inputUserName.value = ""; 
+                    inputUserCpf.value = ""; 
+                    inputUserEmail.value = "";
+                }, 2200);
             }
         });
     }
 
     if (formCartao) {
         formCartao.addEventListener('submit', async (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Impede o recarregamento nativo do form do cartão
             const idSucesso = await processarTransacaoCompleta("Cartão de Crédito");
             if (idSucesso) {
-                alert(`🎉 Sucesso!\n\nDoação aprovada!\nID do Pagamento: ${idSucesso}`);
-                formCartao.reset();
-                inputUserName.value = ""; inputUserCpf.value = ""; inputUserEmail.value = "";
+                mostrarToast(`Doação aprovada com sucesso! ID: ${idSucesso}`, "success");
+                
+                // Reseta tudo após a animação do toast terminar
+                setTimeout(() => {
+                    formCartao.reset();
+                    inputUserName.value = ""; 
+                    inputUserCpf.value = ""; 
+                    inputUserEmail.value = "";
+                }, 2200);
             }
         });
     }

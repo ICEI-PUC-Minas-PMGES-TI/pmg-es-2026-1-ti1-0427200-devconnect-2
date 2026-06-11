@@ -1,5 +1,36 @@
 {
-  "usuarios": [],
+  "usuarios": [
+    {
+      "nome": "Erick Calixto",
+      "cpf": "12345678910",
+      "email": "erickcalixto@gmail.com",
+      "senha": "Teste123",
+      "token": "",
+      "doacoes": [],
+      "criacoes": [],
+      "id": "0l6pyiaF5iU"
+    },
+    {
+      "nome": "Usuario",
+      "cpf": "12345678910",
+      "email": "usuario_teste@gmail.com",
+      "senha": "Teste123",
+      "token": "4214aaa8-4557-409a-af0c-ca4073366424",
+      "doacoes": [],
+      "criacoes": [],
+      "id": "sno8Ae93X_E"
+    },
+    {
+      "nome": "Usuario2",
+      "cpf": "98765432101",
+      "email": "usuario_teste2@gmail.com",
+      "senha": "Teste123",
+      "token": "",
+      "doacoes": [],
+      "criacoes": [],
+      "id": "D-FwQHe7tfg"
+    }
+  ],
   "vaquinhas": [],
   "ongs": [],
   "$schema": "./node_modules/json-server/schema.json"

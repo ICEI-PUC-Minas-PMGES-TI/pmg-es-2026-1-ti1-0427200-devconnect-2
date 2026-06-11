@@ -51,7 +51,7 @@ function verificarAutenticacao(event, destinoSucesso) {
                 mostrarToast('Sessão expirada. Por favor, faça login novamente.', 'error');
                 sessionStorage.clear();
                 setTimeout(() => {
-                    window.location.href = '../login/index.html';
+                    window.location.href = '../login/login.html';
                 }, 1500);
             }
         })
