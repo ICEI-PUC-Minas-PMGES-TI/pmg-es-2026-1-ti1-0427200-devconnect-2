@@ -1,0 +1,71 @@
+.minha-navbar {
+    background-color: hsl(109, 30%, 48%) !important;
+}
+
+.card-header-ong {
+    background-color: hsl(109, 30%, 40%);
+    border-radius: 8px 8px 0 0;
+}
+
+.badge-verificada {
+    background-color: white;
+    color: hsl(109, 30%, 35%);
+    font-size: 13px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.badge-categoria {
+    background-color: hsl(109, 30%, 90%);
+    color: hsl(109, 30%, 30%);
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.label-titulo {
+    color: hsl(109, 30%, 35%);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.titulo-emergencias {
+    color: hsl(109, 30%, 35%);
+    font-weight: bold;
+}
+
+.titulo-card {
+    color: hsl(109, 30%, 30%);
+    font-weight: bold;
+}
+
+.badge-urgencia {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.urgencia-alta {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.urgencia-media {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+
+.urgencia-baixa {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.barra-progresso {
+    background-color: hsl(109, 30%, 45%);
+}

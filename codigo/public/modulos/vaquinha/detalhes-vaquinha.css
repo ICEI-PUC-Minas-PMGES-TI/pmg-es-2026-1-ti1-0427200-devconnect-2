@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --verde-escuro:  #2e7d32;
+  --verde-medio:   #2D7A45;
+  --verde-claro:   #E8F5EE;
+  --verde-borda:   #A8D5B8;
+  --ambar:         #F5A623;
+  --ambar-hover:   #e0951e;
+  --cinza-bg:      #F7F8FA;
+  --cinza-borda:   #E0E3E8;
+  --cinza-texto:   #6B7280;
+  --texto:         #1A1D23;
+  --branco:        #FFFFFF;
+  --radius:        12px;
+  --shadow:        0 2px 12px rgba(0,0,0,0.07);
+  --t:             0.18s ease;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--cinza-bg);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+.header {
+  background: var(--verde-escuro);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-voltar {
+  background: var(--branco);
+  color: var(--verde-escuro);
+  border: 2px solid var(--verde-escuro);
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  text-decoration: none;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.header-texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-nome {
+  font-size: 0.75rem;
+  color: var(--verde-borda);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.header-titulo {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 0 16px 40px;
+}
+
+.card-detalhe {
+  background: var(--branco);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--cinza-borda);
+  overflow: hidden;
+}
+
+.imagem-placeholder {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, var(--verde-claro), #d0eeda);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+.imagem-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.conteudo {
+  padding: 24px;
+}
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.badge-categoria {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--verde-medio);
+  background: var(--verde-claro);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.data-limite {
+  font-size: 0.8rem;
+  color: var(--cinza-texto);
+}
+
+.titulo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.descricao {
+  color: var(--cinza-texto);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.meta-wrapper {
+  margin-bottom: 20px;
+}
+
+.meta-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.meta-label strong {
+  color: var(--texto);
+  font-weight: 700;
+}
+
+.barra-fundo {
+  height: 8px;
+  background: var(--cinza-borda);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.barra-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--verde-medio), #4CAF72);
+  border-radius: 10px;
+  width: 0%;
+  transition: width 0.8s ease;
+}
+
+.meta-rodape {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--cinza-texto);
+  margin-top: 6px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--cinza-borda);
+  margin: 16px 0;
+}
+
+.info-linha {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: var(--texto);
+}
+
+.bloco-informacoes {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--cinza-borda);
+}
+
+.bloco-informacoes h3 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cinza-texto);
+  margin-bottom: 8px;
+}
+
+.bloco-informacoes p {
+  font-size: 0.9rem;
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.link-ong {
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: 700;
+  color: var(--verde-medio);
+  text-decoration: none;
+}
+
+.link-ong:hover {
+  color: var(--verde-escuro);
+}
+
+.oculto {
+  display: none;
+}
