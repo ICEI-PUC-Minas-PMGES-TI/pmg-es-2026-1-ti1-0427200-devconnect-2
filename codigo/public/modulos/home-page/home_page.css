@@ -650,3 +650,61 @@ body {
   *, *::before, *::after { transition: none !important; }
   .card-barra-fill { transition: none !important; }
 }
+
+#toast-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.toast-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 29, 35, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: auto;
+    transition: opacity 0.25s ease;
+}
+
+.toast-backdrop.show {
+    opacity: 1;
+}
+
+.toast {
+    background-color: #1A1D23;
+    color: #FFFFFF;
+    padding: 18px 32px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transform: scale(0.85);
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast.show {
+    transform: scale(1);
+}
+
+.toast-success {
+    border-left: 6px solid #2D7A45;
+}
+
+.toast-error {
+    border-left: 6px solid #F5A623;
+}
