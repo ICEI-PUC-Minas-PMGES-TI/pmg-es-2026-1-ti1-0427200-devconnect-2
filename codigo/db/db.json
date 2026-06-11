@@ -20,6 +20,13 @@
       "senha": "123",
       "nome": "Rommel",
       "email": "rommel@gmail.com"
+    },
+    {
+      "login": "Daniel",
+      "senha": "Nina602041@",
+      "nome": "Daniel Oliveira",
+      "email": "dwadwad@gmail.com",
+      "id": "Mkt4mhv"
     }
   ],
   "ongs": [
@@ -105,6 +112,20 @@
       "emergencial": false,
       "dataCriacao": "2026-04-10",
       "dataLimite": "2026-05-30"
+    },
+    {
+      "titulo": "Daniel",
+      "descricao": "dwaddwa",
+      "categoria": "Ajuda aos animais",
+      "tipoDoacao": "dinheiro",
+      "meta": 2313123,
+      "arrecadado": 0,
+      "informacoes": "Teste",
+      "imagem": "http://127.0.0.1:5501/codigo/public/modulos/vaquinha/criar-vaquinha.html",
+      "emergencial": false,
+      "dataCriacao": "2026-06-11",
+      "dataLimite": "",
+      "id": "TlJzieC"
     }
   ],
   "emergencias": [
