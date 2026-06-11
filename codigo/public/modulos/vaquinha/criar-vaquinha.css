@@ -4,16 +4,33 @@
   padding: 0;
 }
 
+:root {
+  --verde-escuro:  #2e7d32;
+  --verde-medio:   #2D7A45;
+  --verde-claro:   #E8F5EE;
+  --verde-borda:   #A8D5B8;
+  --ambar:         #F5A623;
+  --ambar-hover:   #e0951e;
+  --cinza-bg:      #F7F8FA;
+  --cinza-borda:   #E0E3E8;
+  --cinza-texto:   #6B7280;
+  --texto:         #1A1D23;
+  --branco:        #FFFFFF;
+  --radius:        12px;
+  --shadow:        0 2px 12px rgba(0,0,0,0.07);
+  --t:             0.18s ease;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f0f0f0;
-  color: #333;
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--cinza-bg);
+  color: var(--texto);
   min-height: 100vh;
 }
 
 
 .header {
-  background: #2e7d32;
+  background: var(--verde-escuro);
   color: white;
   padding: 16px 20px;
   display: flex;
@@ -22,9 +39,9 @@ body {
 }
 
 .btn-voltar {
-  background: white;
-  color: #2e7d32;
-  border: 2px solid #2e7d32;
+  background: var(--branco);
+  color: var(--verde-escuro);
+  border: 2px solid var(--verde-escuro);
   border-radius: 6px;
   width: 36px;
   height: 36px;
@@ -44,7 +61,7 @@ body {
 
 .app-nome {
   font-size: 0.75rem;
-  color: #a5d6a7;
+  color: var(--verde-borda);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -58,10 +75,11 @@ body {
 .container {
   max-width: 600px;
   margin: 30px auto;
-  background: white;
-  border-radius: 8px;
+  background: var(--branco);
+  border-radius: var(--radius);
   padding: 30px 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--cinza-borda);
 }
 
 .campo {
@@ -81,20 +99,22 @@ body {
 .campo select {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: 8px;
   font-size: 0.95rem;
-  font-family: Arial, sans-serif;
-  background: #fafafa;
-  transition: border 0.2s;
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--cinza-bg);
+  color: var(--texto);
+  transition: border-color var(--t), box-shadow var(--t);
 }
 
 .campo input:focus,
 .campo textarea:focus,
 .campo select:focus {
   outline: none;
-  border-color: #2e7d32;
-  background: #fff;
+  border-color: var(--verde-medio);
+  box-shadow: 0 0 0 3px rgba(45,122,69,0.1);
+  background: var(--branco);
 }
 
 .campo textarea {
@@ -118,16 +138,16 @@ body {
   justify-content: center;
   width: 100%;
   height: 160px;
-  border: 2px dashed #bbb;
-  border-radius: 8px;
+  border: 2px dashed var(--cinza-borda);
+  border-radius: var(--radius);
   cursor: pointer;
-  background: #fafafa;
+  background: var(--cinza-bg);
   overflow: hidden;
-  transition: border-color 0.2s;
+  transition: border-color var(--t);
 }
 
 .upload-imagem:hover {
-  border-color: #2e7d32;
+  border-color: var(--verde-medio);
 }
 
 #placeholder-upload {
@@ -135,7 +155,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: #888;
+  color: var(--cinza-texto);
   font-size: 0.85rem;
 }
 
@@ -153,19 +173,23 @@ body {
 .btn-criar {
   width: 100%;
   padding: 14px;
-  background: #2e7d32;
-  color: white;
+  background: var(--ambar);
+  color: var(--branco);
   border: none;
   border-radius: 30px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 700;
+  font-family: 'Inter', Arial, sans-serif;
   cursor: pointer;
   margin-top: 8px;
-  transition: background 0.2s;
+  transition: background var(--t), transform var(--t), box-shadow var(--t);
+  box-shadow: 0 4px 14px rgba(245,166,35,0.35);
 }
 
 .btn-criar:hover {
-  background: #1b5e20;
+  background: var(--ambar-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(245,166,35,0.4);
 }
 
 
@@ -177,8 +201,8 @@ body {
 .icone-sucesso {
   width: 64px;
   height: 64px;
-  background: #2e7d32;
-  color: white;
+  background: var(--verde-medio);
+  color: var(--branco);
   border-radius: 50%;
   font-size: 2rem;
   display: flex;
@@ -190,11 +214,11 @@ body {
 .mensagem-sucesso h2 {
   font-size: 1.3rem;
   margin-bottom: 8px;
-  color: #2e7d32;
+  color: var(--verde-escuro);
 }
 
 .mensagem-sucesso p {
-  color: #666;
+  color: var(--cinza-texto);
   margin-bottom: 24px;
 }
 

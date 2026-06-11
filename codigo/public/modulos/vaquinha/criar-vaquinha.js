@@ -1,5 +1,5 @@
 //preview da imagem
-//A imagem é convertida para base64 (um texto longo que representa a imagem) e esse texto é salvo no localStorage junto com os outros dados.
+//A imagem é convertida para base64 (um texto longo que representa a imagem) e esse texto é enviado junto com os outros dados.
 document.getElementById("imagem").addEventListener("change", function () {
   var arquivo = this.files[0] //guardara os arquivos escolhidos
 
@@ -28,6 +28,7 @@ document.getElementById("form-vaquinha").addEventListener("submit", function (e)
   //.value pega o valor digitado e trim remove espaços extras " oi  " -> "oi"
   var titulo      = document.getElementById("titulo").value.trim()
   var descricao   = document.getElementById("descricao").value.trim()
+  var categoria   = document.getElementById("categoria").value
   var tipo        = document.getElementById("tipo").value
   var meta        = document.getElementById("meta").value.trim()
   var informacoes = document.getElementById("informacoes").value.trim()
@@ -36,6 +37,7 @@ document.getElementById("form-vaquinha").addEventListener("submit", function (e)
   // Limpa os erros anteriores antes de validar de novo
   document.getElementById("erro-titulo").textContent    = ""
   document.getElementById("erro-descricao").textContent = ""
+  document.getElementById("erro-categoria").textContent = ""
   document.getElementById("erro-tipo").textContent      = ""
   document.getElementById("erro-meta").textContent      = ""
 
@@ -48,6 +50,11 @@ document.getElementById("form-vaquinha").addEventListener("submit", function (e)
 
   if (descricao === "") {
     document.getElementById("erro-descricao").textContent = "A descrição é obrigatória."
+    temErro = true
+  }
+
+  if (categoria === "") {
+    document.getElementById("erro-categoria").textContent = "Selecione a categoria."
     temErro = true
   }
 
@@ -64,36 +71,47 @@ document.getElementById("form-vaquinha").addEventListener("submit", function (e)
   // impedir salvamento se houver erro
   if (temErro) return
 
-  // criação do objeto 
-  var novaVaquinha = {
-    id: Date.now(), //gera id unico 
-    titulo: titulo,
-    descricao: descricao,
-    tipo: tipo,
-    meta: meta,
-    informacoes: informacoes,
-    imagem: imagemSrc,  //imagem em texto
-    dataCriacao: new Date().toLocaleDateString("pt-BR")
+  // criação do objeto
+  var metaNumero = Number(meta)
+  if (isNaN(metaNumero)) {
+    metaNumero = 0
   }
 
-  salvarVaquinha(novaVaquinha) //envia o objeto para outra funcao
+  var novaVaquinha = {
+    titulo: titulo,
+    descricao: descricao,
+    categoria: categoria,
+    tipoDoacao: tipo.toLowerCase(),
+    meta: metaNumero,
+    arrecadado: 0,
+    informacoes: informacoes,
+    imagem: imagemSrc,  //imagem em texto
+    emergencial: false,
+    dataCriacao: new Date().toISOString().split('T')[0],
+    dataLimite: ""
+  }
 
-  
-  document.getElementById("form-vaquinha").classList.add("oculto")
-  document.getElementById("mensagem-sucesso").classList.remove("oculto")
+  salvarVaquinha(novaVaquinha) //envia o objeto para o json-server
 })
 
-//json.parse transforma texto em array novamente
+// envia a vaquinha para o json-server
 function salvarVaquinha(vaquinha) {
-  // Lê o que já existe no localStorage
-  var lista = JSON.parse(localStorage.getItem("vaquinhas") || "[]") //[] caso nao tenha nenhuma vaquinha salva 
-
- 
-  lista.push(vaquinha) //adicionar nova vaquinha ao final do array
-
-  
-  localStorage.setItem("vaquinhas", JSON.stringify(lista)) //salva denovo no local storage 
-                                                          //localStorage n salva arrays/objetos diretamente, JSON.stringify(lista) tranforma em json
+  fetch('http://localhost:3000/vaquinhas', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(vaquinha)
+  })
+  .then(function (response) {
+    return response.json()
+  })
+  .then(function (data) {
+    document.getElementById("form-vaquinha").classList.add("oculto")
+    document.getElementById("mensagem-sucesso").classList.remove("oculto")
+  })
+  .catch(function (error) {
+    console.log(error)
+    alert("Erro ao salvar a vaquinha. Verifique se o servidor esta rodando.")
+  })
 }
 
 //reseta tudo
@@ -101,6 +119,7 @@ function novaVaquinha() {
   
   document.getElementById("titulo").value      = ""
   document.getElementById("descricao").value   = ""
+  document.getElementById("categoria").value   = ""
   document.getElementById("tipo").value        = ""
   document.getElementById("meta").value        = ""
   document.getElementById("informacoes").value = ""
@@ -114,10 +133,11 @@ function novaVaquinha() {
 
   document.getElementById("erro-titulo").textContent    = ""
   document.getElementById("erro-descricao").textContent = ""
+  document.getElementById("erro-categoria").textContent = ""
   document.getElementById("erro-tipo").textContent      = ""
   document.getElementById("erro-meta").textContent      = ""
 
-  
+
   document.getElementById("form-vaquinha").classList.remove("oculto")
   document.getElementById("mensagem-sucesso").classList.add("oculto")
 }
