@@ -1,62 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-    font-size: 190%;
-}
-
-nav {
-    background-color: green;
-    padding: 15px;
-}
-
-main {
-    width: 500px;
-    margin: 30px auto;
-    background-color: white;
-    padding: 20px;
-}
-
-h1 {
-    color: green;
-    margin-bottom: 10px;
-}
-
-p {
-    color: gray;
-}
-
-label {
-    font-weight: bold;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-textarea {
-    height: 80px;
+.minha-navbar {
+    background-color: hsl(109, 30%, 48%) !important;
 }
 
 button {
-    padding: 10px;
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
+    background-color: rgb(20, 91, 23) !important;
+    color: white !important;
 }
-
-/* falta ajustar tamanho do botao */
