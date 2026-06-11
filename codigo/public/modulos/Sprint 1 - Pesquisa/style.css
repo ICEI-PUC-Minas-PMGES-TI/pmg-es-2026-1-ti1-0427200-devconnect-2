@@ -187,7 +187,6 @@ body {
     line-height: 1.6;
     margin-bottom: 20px;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -243,4 +242,63 @@ body {
     .header-content h1 {
         font-size: 26px;
     }
+}
+
+/* Alinhamento do Rodapé do Card */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.valores-box {
+    flex: 1;
+}
+
+.btn-detalhes {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #059669;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-detalhes:hover {
+    background-color: #047857;
+}
+
+.btn-detalhes:active {
+    transform: scale(0.98);
+}
+
+.btn-criar-vaquinha {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #059669;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-criar-vaquinha:hover {
+    background-color: #047857;
+    box-shadow: 0 6px 16px rgba(4, 120, 87, 0.35);
+}
+
+.btn-criar-vaquinha:active {
+    transform: scale(0.98);
 }
