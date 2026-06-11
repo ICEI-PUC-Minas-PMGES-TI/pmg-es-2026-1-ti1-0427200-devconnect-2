@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ConectaPlus — Campanhas de Doação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home_page.css"/>
+</head>
+<body>
+
+  <!-- HEADER / NAV -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="rgba(255,255,255,0.15)"/>
+          <path d="M16 24s-9-5.5-9-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-9 11-9 11z" fill="#F5A623"/>
+        </svg>
+        <span class="logo-nome">ConectaPlus</span>
+      </a>
+      <nav class="nav">
+        <a href="../vaquinha/criar-vaquinha.html" class="nav-link nav-destaque">+ Criar Vaquinha</a>
+        <a href="#" class="nav-link">ONGs</a>
+        <a href="#" class="nav-link">Emergências</a>
+        <a href="#" class="nav-link nav-perfil">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          Perfil
+        </a>
+      </nav>
+      <button class="menu-mobile" id="menu-mobile" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-texto">
+        <span class="hero-eyebrow">Plataforma de doações</span>
+        <h1 class="hero-titulo">Pequenas ações,<br>grandes mudanças.</h1>
+        <p class="hero-sub">Apoie campanhas reais de pessoas e ONGs que precisam da sua ajuda. Toda doação conta.</p>
+        <a href="../vaquinha/criar-vaquinha.html" class="btn-ambar">Criar sua vaquinha</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <div class="pagina">
+
+    <!-- LISTA DE CAMPANHAS -->
+    <main class="campanhas" id="campanhas">
+
+      <!-- FILTROS RÁPIDOS (mobile-friendly) -->
+      <div class="filtros-rapidos" id="filtros-rapidos">
+        <button class="filtro-chip ativo" data-cat="todos">Todos</button>
+        <button class="filtro-chip" data-cat="Saúde">Saúde</button>
+        <button class="filtro-chip" data-cat="Educação">Educação</button>
+        <button class="filtro-chip" data-cat="Vestimentas">Vestimentas</button>
+        <button class="filtro-chip" data-cat="Alimento">Alimento</button>
+        <button class="filtro-chip" data-cat="Ajuda aos animais">Animais</button>
+      </div>
+
+      <div class="lista-campanhas" id="lista-campanhas">
+        <!-- Cards injetados por JS -->
+      </div>
+
+      <!-- PAGINAÇÃO -->
+      <div class="paginacao" id="paginacao">
+        <button class="pag-btn" id="btn-anterior" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="pag-info" id="pag-info">Página 1</span>
+        <button class="pag-btn" id="btn-proximo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-bloco">
+        <label class="sidebar-label" for="busca">Pesquisar</label>
+        <div class="busca-wrapper">
+          <svg class="busca-icone" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="busca" placeholder="Buscar campanhas..." class="busca-input"/>
+        </div>
+      </div>
+
+      <div class="sidebar-bloco">
+        <span class="sidebar-label">Principais causas</span>
+        <ul class="categorias-lista" id="categorias-sidebar">
+          <li><button class="cat-item ativo" data-cat="todos">
+            <span class="cat-emoji">🌟</span> Todas as causas
+          </button></li>
+          <li><button class="cat-item" data-cat="Saúde">
+            <span class="cat-emoji">❤️</span> Saúde
+          </button></li>
+          <li><button class="cat-item" data-cat="Educação">
+            <span class="cat-emoji">📚</span> Educação
+          </button></li>
+          <li><button class="cat-item" data-cat="Vestimentas">
+            <span class="cat-emoji">👕</span> Vestimentas
+          </button></li>
+          <li><button class="cat-item" data-cat="Alimento">
+            <span class="cat-emoji">🥫</span> Alimento
+          </button></li>
+          <li><button class="cat-item" data-cat="Ajuda aos animais">
+            <span class="cat-emoji">🐾</span> Ajuda aos animais
+          </button></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-bloco sidebar-cta">
+        <p class="cta-texto">Tem uma causa para defender? Crie sua vaquinha agora.</p>
+        <a href="../vaquinha/criar-vaquinha.html" class="btn-ambar btn-ambar-sm">Criar vaquinha</a>
+      </div>
+
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <span>© 2025 ConectaPlus · Feito com ❤️ para quem doa e para quem precisa</span>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
