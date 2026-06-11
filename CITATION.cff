@@ -4,16 +4,16 @@ title: Dev Connect
 authors:
   - family-names: Calixto David Silva
     given-names: Erick
-  - family-names: 
+  - family-names: -- nome aqui
     given-names: Luis
-  - family-names: 
+  - family-names: -- nome aqui
     given-names: Fernando
   - family-names: Arruda Leite
     given-names: Bernado
   - family-names: Fineli Gomes Ramos
     given-names: Larissa
-  - family-names: 
-    given-names:
+  - family-names: -- sobre nome aqui
+    given-names: Daniel
   - name-suffix: Professor
     affiliation: PUC Minas
     family-names: 
@@ -22,7 +22,7 @@ authors:
     affiliation: PUC Minas
     family-names: 
     given-names: Diego
-    - name-suffix: Professor
+  - name-suffix: Professor
     affiliation: PUC Minas
     family-names: 
     given-names: Danilo
