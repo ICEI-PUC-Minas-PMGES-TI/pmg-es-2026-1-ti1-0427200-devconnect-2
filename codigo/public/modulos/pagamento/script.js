@@ -1,194 +1,160 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const donationInput = document.getElementById('donation-amount');
-    const txtSubtotal = document.getElementById('txt-subtotal');
-    const txtTotal = document.getElementById('txt-total');
-    const txtTituloResumo = document.getElementById('resumo-titulo');
-    const txtTagResumo = document.getElementById('resumo-tag');
-    
-    const inputUserName = document.getElementById('user-name');
-    const inputUserCpf = document.getElementById('user-cpf');
-    const inputUserEmail = document.getElementById('user-email');
+document.addEventListener("DOMContentLoaded", async () => {
+    // Endpoints do seu JSON Server
+    const API_USUARIOS = "http://localhost:3000/usuarios"; 
+    const API_VAQUINHAS = "http://localhost:3000/vaquinhas"; 
 
-    const btnPix = document.getElementById('btn-gerar-pix');
-    const formCartao = document.getElementById('form-cartao');
-
-    const API_URL = 'http://localhost:3000';
-
+    // 1. Recupera os IDs necessários (Sessão e URL)
+    const TOKEN_USUARIO = sessionStorage.getItem("usuarioToken");
     const urlParams = new URLSearchParams(window.location.search);
-    const tipoItem = urlParams.get('tipo'); 
-    const idItem = urlParams.get('id');     
+    const idDaVaquinha = urlParams.get('id') || "12312"; 
 
-    let itemAtual = null;
+    // Elementos do DOM - Resumo da Vaquinha
+    const resumoTag = document.getElementById("resumo-tag");
+    const resumoTitulo = document.getElementById("resumo-titulo");
 
-    // TOAST CONFIGURADO PARA FICAR EXATAMENTE 2 SEGUNDOS EM TELA
-    function mostrarToast(mensagem, tipo = 'success') {
-        const container = document.getElementById('toast-container');
-        if (!container) return;
+    // Elementos do DOM - Formulário e Valores
+    const donationAmountInput = document.getElementById("donation-amount");
+    const txtSubtotal = document.getElementById("txt-subtotal");
+    const txtTotal = document.getElementById("txt-total");
+    const userNameInput = document.getElementById("user-name");
+    const userCpfInput = document.getElementById("user-cpf");
+    const userEmailInput = document.getElementById("user-email");
+    const btnGerarPix = document.getElementById("btn-gerar-pix");
+    const formCartao = document.getElementById("form-cartao");
 
-        const backdrop = document.createElement('div');
-        backdrop.className = 'toast-backdrop';
+    // Variável para guardar os dados da vaquinha em memória temporária
+    let dadosDaVaquinhaGlobal = null;
 
-        const toast = document.createElement('div');
-        toast.className = `toast toast-${tipo}`;
-        
-        const icone = tipo === 'success' ? '💚' : '⚠️';
-        toast.innerHTML = `<span>${icone}</span> <span>${mensagem}</span>`;
-
-        backdrop.appendChild(toast);
-        container.appendChild(backdrop);
-
-        setTimeout(() => {
-            backdrop.classList.add('show');
-            toast.classList.add('show');
-        }, 10);
-
-        // Aguarda os 2 segundos (2000ms) e remove suavemente
-        setTimeout(() => {
-            backdrop.classList.remove('show');
-            toast.classList.remove('show');
-            setTimeout(() => backdrop.remove(), 300);
-        }, 2000);
-    }
-
-    async function verificarDestino() {
-        if (!tipoItem || !idItem) return;
+    // --- PASSO 1: BUSCAR E EXIBIR AS INFORMAÇÕES DA VAQUINHA ---
+    async function carregarDadosDaVaquinha() {
         try {
-            const response = await fetch(`${API_URL}/${tipoItem}/${idItem}`);
-            if (!response.ok) throw new Error();
+            const resposta = await fetch(`${API_VAQUINHAS}/${idDaVaquinha}`);
+            if (!resposta.ok) throw new Error("Vaquinha não encontrada no banco de dados.");
             
-            itemAtual = await response.json();
+            dadosDaVaquinhaGlobal = await resposta.json();
 
-            const nomeDestino = itemAtual.titulo || itemAtual.nome || "Instituição";
-            const tagDestino = itemAtual.tag || itemAtual.categoria || itemAtual.causa || "Geral";
-
-            txtTituloResumo.textContent = nomeDestino;
-            txtTagResumo.textContent = tagDestino;
-        } catch (error) {
-            mostrarToast("Este destino (Vaquinha ou ONG) não foi encontrado no banco de dados.", "error");
+            // Atualiza os textos do lado direito (Resumo) com os dados vindos do db.json
+            if (resumoTitulo) resumoTitulo.textContent = dadosDaVaquinhaGlobal.titulo || dadosDaVaquinhaGlobal.vaquinha_titulo;
+            if (resumoTag) resumoTag.textContent = dadosDaVaquinhaGlobal.tag || dadosDaVaquinhaGlobal.vaquinha_tag;
+            
+        } catch (erro) {
+            console.error("Erro ao carregar dados da vaquinha:", erro);
         }
     }
 
-    function atualizarValoresNaTela() {
-        let valor = parseFloat(donationInput.value);
+    // Executa a busca inicial ao abrir a página
+    await carregarDadosDaVaquinha();
+
+
+    // --- PASSO 2: ATUALIZAÇÃO DINÂMICA DOS VALORES EM TELA ---
+    donationAmountInput.addEventListener("input", (e) => {
+        let valor = parseFloat(e.target.value);
         if (isNaN(valor) || valor < 0) valor = 0;
+        
         const valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         txtSubtotal.textContent = valorFormatado;
         txtTotal.textContent = valorFormatado;
-    }
+    });
 
-    function validarDadosUsuario() {
-        const nome = inputUserName.value.trim();
-        const cpf = inputUserCpf.value.trim();
-        const email = inputUserEmail.value.trim();
+
+    // --- PASSO 3: PROCESSAR A DOAÇÃO (SALVA NO USUÁRIO E ATUALIZA A VAQUINHA) ---
+    async function processarDoacao(e, metodoPagamento) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        if (!TOKEN_USUARIO) {
+            alert("Usuário não identificado. Por favor, faça login para continuar.");
+            return;
+        }
+
+        const nome = userNameInput.value.trim();
+        const cpf = userCpfInput.value.trim();
+        const email = userEmailInput.value.trim();
+        const valorDoacao = parseFloat(donationAmountInput.value);
 
         if (!nome || !cpf || !email) {
-            mostrarToast("Por favor, preencha Nome, CPF e E-mail no topo da página.", "error");
-            return null;
+            alert("Por favor, preencha todos os dados de identificação.");
+            return;
         }
-        return { nome, cpf, email };
-    }
 
-    async function processarTransacaoCompleta(dadosFormaPagamento) {
-        const valorDoacao = parseFloat(donationInput.value);
-        const dadosUsuario = validarDadosUsuario();
-
-        if (!dadosUsuario) return false;
         if (isNaN(valorDoacao) || valorDoacao < 5) {
-            mostrarToast('O valor mínimo para doação é R$ 5,00', "error");
-            return false;
+            alert("O valor mínimo de contribuição é R$ 5,00.");
+            return;
         }
-        if (!itemAtual) {
-            mostrarToast("Não é possível processar a doação para um destino inexistente.", "error");
-            return false;
-        }
-
-        const saldoAnterior = parseFloat(itemAtual.valor_arrecadado) || 0;
-        const novoSaldo = saldoAnterior + valorDoacao;
-        
-        let dadosAtualizacao = { valor_arrecadado: novoSaldo };
-        if (itemAtual.meta) {
-            const novoProgresso = Math.min(Math.round((novoSaldo / itemAtual.meta) * 100), 100);
-            dadosAtualizacao.progresso_porcentagem = novoProgresso;
-        }
-
-        const idPagamentoUnico = "PAG-" + Math.floor(100000 + Math.random() * 900000);
-        const nomeDestino = itemAtual.titulo || itemAtual.nome || "Não identificado";
-        
-        const registroDoacao = {
-            idPagamento: idPagamentoUnico,
-            destinoTipo: tipoItem,      
-            destinoId: idItem,          
-            destinoTitulo: nomeDestino,
-            valorDoado: valorDoacao,
-            formaPagamento: dadosFormaPagamento,
-            doadorNome: dadosUsuario.nome,   
-            doadorCpf: dadosUsuario.cpf,     
-            doadorEmail: dadosUsuario.email, 
-            dataHora: new Date().toISOString()
-        };
 
         try {
-            const atualizaSaldo = await fetch(`${API_URL}/${tipoItem}/${idItem}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dadosAtualizacao)
+            // A) Busca o usuário logado filtrando pelo token do sessionStorage
+            const respostaUserGet = await fetch(`${API_USUARIOS}?token=${TOKEN_USUARIO}`);
+            if (!respostaUserGet.ok) throw new Error("Erro ao buscar dados do usuário.");
+            
+            const usuariosEncontrados = await respostaUserGet.json();
+            if (usuariosEncontrados.length === 0) throw new Error("Usuário não localizado.");
+
+            const usuarioAtual = usuariosEncontrados[0];
+            const ID_REAL_DO_USUARIO = usuarioAtual.id; 
+
+            // Gera o ID único desta transação específica
+            const idTransacaoDoacao = "doc_" + Math.random().toString(36).substr(2, 9);
+
+            // Monta o objeto da nova doação
+            const novaDoacao = {
+                id_doacao: idTransacaoDoacao,
+                vaquinha_id: idDaVaquinha, 
+                vaquinha_titulo: resumoTitulo.textContent,
+                vaquinha_tag: resumoTag.textContent,
+                valor: valorDoacao,
+                metodo: metodoPagamento,
+                data: new Date().toISOString(),
+                status: metodoPagamento === 'Pix' ? 'Aguardando Pagamento' : 'Aprovado'
+            };
+
+            // Junta as doações antigas do usuário com a nova
+            const listaDoacoesAtualizada = [...(usuarioAtual.doacoes || []), novaDoacao];
+
+            // B) REQUISIÇÃO 1: Atualiza a lista de doações do Usuário
+            const respostaPatchUsuario = await fetch(`${API_USUARIOS}/${ID_REAL_DO_USUARIO}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ doacoes: listaDoacoesAtualizada })
             });
 
-            const criaDoacao = await fetch(`${API_URL}/doacoes`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(registroDoacao)
+            if (!respostaPatchUsuario.ok) throw new Error("Falha ao salvar a doação no perfil do usuário.");
+
+            // C) CALCULO DO NOVO TOTAL DA VAQUINHA:
+            // Pega o valor que já estava arrecadado no banco (se não existir, assume 0) e soma a nova doação
+            const arrecadadoAtual = parseFloat(dadosDaVaquinhaGlobal.arrecadado || 0);
+            const novoTotalArrecadado = arrecadadoAtual + valorDoacao;
+
+            // D) REQUISIÇÃO 2: Atualiza o montante acumulado direto na rota da Vaquinha
+            const respostaPatchVaquinha = await fetch(`${API_VAQUINHAS}/${idDaVaquinha}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ 
+                    arrecadado: novoTotalArrecadado // Altere aqui se o nome do campo no seu JSON for diferente
+                })
             });
 
-            if (atualizaSaldo.ok && criaDoacao.ok) {
-                itemAtual.valor_arrecadado = novoSaldo;
-                return idPagamentoUnico; 
+            if (respostaPatchVaquinha.ok) {
+                // Redireciona para a página de sucesso/pesquisa levando o ID gerado
+                window.location.href = `sucesso.html?id=${idTransacaoDoacao}`;
             } else {
-                mostrarToast("Erro ao gravar os dados no servidor.", "error");
-                return false;
+                throw new Error("Falha ao atualizar o saldo da vaquinha.");
             }
-        } catch (error) {
-            mostrarToast("Erro de conexão com o banco de dados.", "error");
-            return false;
+
+        } catch (erro) {
+            console.error("Erro na transação:", erro);
+            alert("Falha ao processar doação. Verifique a conexão com o servidor.");
         }
     }
 
-    donationInput.addEventListener('input', atualizarValoresNaTela);
+    // Ouvintes de eventos dos botões de pagamento
+    btnGerarPix.addEventListener("click", (e) => {
+        processarDoacao(e, "Pix");
+    });
 
-    if (btnPix) {
-        btnPix.addEventListener('click', async (e) => {
-            e.preventDefault(); // Previne qualquer comportamento indesejado
-            const idSucesso = await processarTransacaoCompleta("Pix");
-            if (idSucesso) {
-                mostrarToast(`Pix Gerado com Sucesso! ID: ${idSucesso}`, "success");
-                
-                // Limpa os campos após os 2 segundos do toast sumir
-                setTimeout(() => {
-                    inputUserName.value = ""; 
-                    inputUserCpf.value = ""; 
-                    inputUserEmail.value = "";
-                }, 2200);
-            }
-        });
-    }
-
-    if (formCartao) {
-        formCartao.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Impede o recarregamento nativo do form do cartão
-            const idSucesso = await processarTransacaoCompleta("Cartão de Crédito");
-            if (idSucesso) {
-                mostrarToast(`Doação aprovada com sucesso! ID: ${idSucesso}`, "success");
-                
-                // Reseta tudo após a animação do toast terminar
-                setTimeout(() => {
-                    formCartao.reset();
-                    inputUserName.value = ""; 
-                    inputUserCpf.value = ""; 
-                    inputUserEmail.value = "";
-                }, 2200);
-            }
-        });
-    }
-
-    verificarDestino();
+    formCartao.addEventListener("submit", (e) => {
+        processarDoacao(e, "Cartão de Crédito");
+    });
 });

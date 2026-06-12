@@ -1,56 +1,5 @@
 {
-  "usuarios": [
-    {
-      "nome": "Erick Calixto",
-      "cpf": "12345678910",
-      "email": "erickcalixto@gmail.com",
-      "senha": "Teste123",
-      "token": "",
-      "doacoes": [],
-      "criacoes": [],
-      "id": "0l6pyiaF5iU"
-    },
-    {
-      "nome": "Usuario",
-      "cpf": "12345678910",
-      "email": "usuario_teste@gmail.com",
-      "senha": "Teste123",
-      "token": "5ae76369-e1f6-472d-8585-eae91fe316ef",
-      "doacoes": [],
-      "criacoes": [],
-      "id": "sno8Ae93X_E"
-    },
-    {
-      "nome": "Usuario2",
-      "cpf": "98765432101",
-      "email": "usuario_teste2@gmail.com",
-      "senha": "Teste123",
-      "token": "",
-      "doacoes": [],
-      "criacoes": [],
-      "id": "D-FwQHe7tfg"
-    },
-    {
-      "nome": "AKSJBdfjksa",
-      "cpf": "1234213125412",
-      "email": "123ohi12wen@gmail.com",
-      "senha": "1234",
-      "token": "",
-      "doacoes": [],
-      "criacoes": [],
-      "id": "W2FLdjfoaG8"
-    },
-    {
-      "nome": "Teste",
-      "cpf": "12312412512",
-      "email": "ansjdan@gmail.com",
-      "senha": "123",
-      "token": "",
-      "doacoes": [],
-      "criacoes": [],
-      "id": "XJ9v_C5f5us"
-    }
-  ],
+  "usuarios": [],
   "vaquinhas": [],
   "ongs": [],
   "$schema": "./node_modules/json-server/schema.json"

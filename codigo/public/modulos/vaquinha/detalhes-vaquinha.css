@@ -227,3 +227,38 @@ hr {
 .oculto {
   display: none;
 }
+
+/* Container do botão para criar um espaçamento legal */
+.acao-doacao {
+    margin: 24px 0;
+    width: 100%;
+}
+
+/* Estilização do botão em formato de link de destaque */
+.btn-doar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 24px;
+    background-color: #2D7A45; /* Verde médio padrão que usamos */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(45, 122, 69, 0.25);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+/* Efeito de Hover (passar o mouse) */
+.btn-doar:hover {
+    background-color: #215d33; /* Tom mais escuro para o feedback visual */
+    transform: translateY(-2px);
+}
+
+/* Efeito de clique */
+.btn-doar:active {
+    transform: translateY(0);
+}

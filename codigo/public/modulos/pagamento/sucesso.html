@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doação Processada - Faça a Diferença</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .success-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 550px;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background-color: #f0fdf4;
+            border: 2px solid #bbf7d0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+            font-size: 40px;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #0f172a;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .info-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            font-size: 14px;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .info-row:first-child {
+            padding-top: 0;
+        }
+
+        .info-label {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .info-value.highlight {
+            color: #059669;
+            font-size: 16px;
+        }
+
+        .pix-qr-section {
+            display: none;
+            /* Escondido por padrão, aparece se for PIX */
+            background-color: #f0fdf4;
+            border: 1px dashed #bbf7d0;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+        }
+
+        .qr-placeholder {
+            width: 180px;
+            height: 180px;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            margin: 0 auto 16px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            width: 100%;
+            padding: 16px;
+            background-color: #059669;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn-back:hover {
+            background-color: #047857;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="success-container">
+        <div class="icon-wrapper">🎉</div>
+        <h1 id="main-title">Doação Processada!</h1>
+        <p class="subtitle" id="main-subtitle">Sua contribuição foi registrada com sucesso no nosso sistema. Obrigado
+            por fazer a diferença!</p>
+
+        <div class="pix-qr-section" id="pix-section">
+            <div class="qr-placeholder">
+                [ QR CODE SIMULADO ]
+            </div>
+            <p style="font-size: 13px; color: #166534; font-weight: 600;">Escaneie o código acima no aplicativo do seu
+                banco para concluir o pagamento.</p>
+        </div>
+
+        <div class="info-box">
+            <div class="info-row">
+                <span class="info-label">Causa apoiada:</span>
+                <span class="info-value" id="view-titulo">---</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Forma de pagamento:</span>
+                <span class="info-value" id="view-metodo">---</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Valor doado:</span>
+                <span class="info-value highlight" id="view-valor">R$ 0,00</span>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn-back">Voltar ao Início</a>
+    </div>
+
+    <script src="sucesso.js"></script>
+</body>
+</html>
