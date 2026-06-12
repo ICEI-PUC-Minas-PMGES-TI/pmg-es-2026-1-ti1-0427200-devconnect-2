@@ -290,59 +290,73 @@ body {
     }
 }
 
+/* Container fixo ocupando a tela cheia para gerenciar o efeito escuro de fundo */
 #toast-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 9999;
-    pointer-events: none;
+    z-index: 99999;
+    pointer-events: none; /* Só bloqueia cliques quando estiver visível */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.toast-backdrop {
-    position: absolute;
+/* O fundo escuro que envolve o Toast e realça o centro */
+.toast-backdrop-modal {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(26, 29, 35, 0.4);
-    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.6); /* Escurece o fundo */
+    backdrop-filter: blur(4px); /* Efeito opcional de desfoque profissional chique */
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     opacity: 0;
-    pointer-events: auto;
-    transition: opacity 0.25s ease;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-.toast-backdrop.show {
+/* Quando ativo, ativa os cliques no fundo e mostra a opacidade */
+.toast-backdrop-modal.show {
     opacity: 1;
+    pointer-events: auto;
 }
 
-.toast {
-    background-color: var(--texto);
-    color: var(--branco);
-    padding: 18px 32px;
-    border-radius: var(--radius);
-    font-size: 0.95rem;
+/* Caixa do Toast centralizado */
+.toast-modal {
+    padding: 20px 35px;
+    border-radius: 16px;
+    color: #ffffff;
+    font-size: 1.1rem;
     font-weight: 600;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     display: flex;
     align-items: center;
     gap: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transform: scale(0.85);
-    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.toast.show {
+/* Animação de "Pop" quando o modal abrir */
+.toast-backdrop-modal.show .toast-modal {
     transform: scale(1);
 }
 
-.toast-success {
-    border-left: 6px solid var(--verde-medio);
+.toast-modal.toast-success {
+    background-color: var(--verde-medio);
+    border: 2px solid var(--verde-borda);
 }
 
-.toast-error {
-    border-left: 6px solid var(--ambar);
+.toast-modal.toast-error {
+    background-color: #e74c3c;
+    border: 2px solid #f1948a;
+}
+
+.toast-text {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
