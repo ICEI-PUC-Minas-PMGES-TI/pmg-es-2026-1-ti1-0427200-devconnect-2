@@ -1,18 +1,15 @@
 const API_URL = 'http://localhost:3000/usuarios';
 
-// Função para exibir o Toast centralizado com fundo escuro (Overlay)
-function mostrarToast(mensagem, tipo = 'success') {
+// Função para exibir o Toast centralizado com fundo escuro (Overlay) - Apenas para Erros
+function mostrarToast(mensagem, tipo = 'error') {
     const container = document.getElementById('toast-container');
     if (!container) return;
 
-    // Limpa qualquer toast aberto anteriormente
     container.innerHTML = '';
 
-    // Cria o fundo escuro (Overlay) que vai cobrir a tela e borrar o fundo
     const backdrop = document.createElement('div');
     backdrop.className = 'toast-backdrop-modal';
 
-    // Cria a caixinha do Toast que vai ficar bem no centro
     const toast = document.createElement('div');
     toast.className = `toast-modal toast-${tipo}`;
     
@@ -22,12 +19,10 @@ function mostrarToast(mensagem, tipo = 'success') {
     backdrop.appendChild(toast);
     container.appendChild(backdrop);
 
-    // Pequeno delay para ativar a animação de Fade-In do CSS
     setTimeout(() => {
         backdrop.classList.add('show');
     }, 10);
 
-    // Segura na tela por exatamente 2 segundos e depois remove com suavidade
     setTimeout(() => {
         backdrop.classList.remove('show');
         setTimeout(() => backdrop.remove(), 300);
@@ -152,15 +147,12 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
             });
 
             if (resposta.ok) {
-                // ESTRATÉGIA SALVA-VIDAS: Salva para exibir após o reload inevitável do banco
                 sessionStorage.setItem('toastAgendadoMsg', 'Cadastro realizado com sucesso!');
                 sessionStorage.setItem('toastAgendadoTipo', 'success');
                 sessionStorage.setItem('abaAtual', 'login');
 
-                // Limpa o form imediatamente para garantir uma transição bonita
                 document.getElementById('auth-form').reset();
                 
-                // Se o ambiente der F5, o código abaixo não importa; se NÃO der F5, ele roda na hora:
                 mostrarToast('Cadastro realizado com sucesso!', 'success');
                 setTimeout(() => {
                     btnSubmit.disabled = false;
@@ -177,7 +169,7 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
             btnSubmit.innerText = textoOriginalBotao;
         }
     } else {
-        // Fluxo de Login
+        // --- FLUXO DE LOGIN ---
         try {
             const resposta = await fetch(`${API_URL}?email=${email}&senha=${senha}`);
             const usuariosEncontrados = await resposta.json();
@@ -193,20 +185,18 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
                 });
 
                 if (atualizacaoToken.ok) {
-                    // Agenda o Toast de sucesso para sobreviver ao F5 pós-PATCH
+                    // Define as variáveis de sessão necessárias
                     sessionStorage.setItem('usuarioToken', tokenGerado);
                     sessionStorage.setItem('abaAtual', 'login');
-                    sessionStorage.setItem('toastAgendadoMsg', `Login realizado com sucesso! Bem-vindo, ${usuarioLogado.nome}.`);
-                    sessionStorage.setItem('toastAgendadoTipo', 'success');
-
+                    
+                    // Limpa os campos do formulário imediatamente
                     document.getElementById('email').value = '';
                     document.getElementById('password').value = '';
+                    btnSubmit.disabled = false;
 
-                    mostrarToast(`Login realizado com sucesso! Bem-vindo, ${usuarioLogado.nome}.`, 'success');
-                    setTimeout(() => {
-                        btnSubmit.disabled = false;
-                        switchTab('login');
-                    }, 2000);
+                    // Redireciona diretamente e sem delay para a home page
+                    window.location.href = "../home-page/home_page.html"; 
+
                 } else {
                     mostrarToast('Erro ao gerar sessão de segurança.', 'error');
                     btnSubmit.disabled = false;
@@ -225,7 +215,7 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
     }
 });
 
-// Quando o DOM carregar, verifica se havia um Toast agendado pendente por causa do F5 do servidor
+// Quando o DOM carregar, verifica status e executa agendamentos pendentes (ex: Sucesso do cadastro)
 document.addEventListener('DOMContentLoaded', () => {
     const msgAgendada = sessionStorage.getItem('toastAgendadoMsg');
     const tipoAgendado = sessionStorage.getItem('toastAgendadoTipo') || 'success';
@@ -233,9 +223,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     switchTab(ultimaAba);
 
-    if (msgAgendada) {
+    if (msgAgendada && window.location.href.includes('login')) {
         mostrarToast(msgAgendada, tipoAgendado);
-        // Consome e limpa o agendamento para não repetir no próximo F5 manual
         sessionStorage.removeItem('toastAgendadoMsg');
         sessionStorage.removeItem('toastAgendadoTipo');
     }

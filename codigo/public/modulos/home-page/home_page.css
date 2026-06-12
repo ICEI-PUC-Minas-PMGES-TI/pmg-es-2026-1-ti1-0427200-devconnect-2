@@ -651,60 +651,59 @@ body {
   .card-barra-fill { transition: none !important; }
 }
 
+/* Container que vira o fundo escuro (Overlay) ocupando a tela toda */
 #toast-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-.toast-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(26, 29, 35, 0.4);
-    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro transparente */
+    backdrop-filter: blur(3px); /* Leve desfoque no fundo para dar elegância */
+    z-index: 10000;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     opacity: 0;
-    pointer-events: auto;
+    pointer-events: none; /* Desativa cliques enquanto sumido */
     transition: opacity 0.25s ease;
 }
 
-.toast-backdrop.show {
+/* Quando o container do fundo escuro for ativado */
+#toast-container.mostrar-fundo {
     opacity: 1;
+    pointer-events: auto; /* Bloqueia interações com o resto da página */
 }
 
-.toast {
+/* Caixa do Toast centralizada e com animação de escala (zoom) */
+.custom-toast {
     background-color: #1A1D23;
     color: #FFFFFF;
-    padding: 18px 32px;
-    border-radius: 12px;
+    padding: 24px 32px;
+    border-radius: 16px;
     font-family: 'Inter', sans-serif;
-    font-size: 1.05rem;
+    font-size: 16px;
     font-weight: 600;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
+    max-width: 450px;
+    width: 90%; /* Responsivo no mobile */
+    text-align: center;
+    justify-content: center;
+    border-left: 6px solid #F5A623; /* Detalhe em âmbar */
+    
+    /* Estado inicial da animação do card */
     transform: scale(0.85);
     transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.toast.show {
+/* Quando o toast ganhar foco e crescer */
+.custom-toast.mostrar-card {
     transform: scale(1);
 }
 
-.toast-success {
-    border-left: 6px solid #2D7A45;
-}
-
-.toast-error {
-    border-left: 6px solid #F5A623;
+.custom-toast.success {
+    border-left-color: #2D7A45;
 }
