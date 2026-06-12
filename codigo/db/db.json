@@ -2,52 +2,42 @@
   "usuarios": [
     {
       "nome": "Usuario",
-      "cpf": "12345678101",
+      "cpf": "12345678910",
       "email": "usuario@gmail.com",
       "senha": "Teste123",
-      "token": "819b1cb9-7f40-44c0-af69-c33b2ceaf0cc",
+      "token": "5e87b067-ef7c-4550-ad12-15db67ab93a1",
       "doacoes": [
         {
-          "id_doacao": "doc_6xywd7mkf",
-          "vaquinha_id": "tKtP0CukQsc",
-          "vaquinha_titulo": "Vaquinha Exemplo",
+          "id_doacao": "doc_rcr95u2w8",
+          "vaquinha_id": "okZzL7oYsUo",
+          "vaquinha_titulo": "Teste",
           "vaquinha_tag": "",
-          "valor": 50,
+          "valor": 1000,
           "metodo": "Pix",
-          "data": "2026-06-12T01:47:32.815Z",
+          "data": "2026-06-12T02:25:06.988Z",
           "status": "Aguardando Pagamento"
         }
       ],
       "criacoes": [],
-      "id": "Z8aEX7O2o14"
-    },
-    {
-      "nome": "Teste",
-      "cpf": "12314512341",
-      "email": "teste@gmail.com",
-      "senha": "123",
-      "token": "",
-      "doacoes": [],
-      "criacoes": [],
-      "id": "JX0_OJR7KxI"
+      "id": "mN58WTTlS1I"
     }
   ],
+  "ongs": [],
   "vaquinhas": [
     {
-      "titulo": "Vaquinha Exemplo",
-      "descricao": "vaquinha para testar",
+      "titulo": "Teste",
+      "descricao": "Teste",
       "categoria": "Saúde",
-      "tipoDoacao": "dinheiro",
-      "meta": 100000,
-      "arrecadado": 50,
-      "informacoes": "Me ajude",
+      "tipoDoacao": "roupas",
+      "meta": 1000,
+      "arrecadado": 1000,
+      "informacoes": "teste",
       "imagem": "http://127.0.0.1:5501/codigo/public/modulos/vaquinha/criar-vaquinha.html",
       "emergencial": false,
       "dataCriacao": "2026-06-12",
       "dataLimite": "",
-      "id": "tKtP0CukQsc"
+      "id": "okZzL7oYsUo"
     }
   ],
-  "ongs": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

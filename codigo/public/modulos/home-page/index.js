@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (tokenUsuario) {
                 // Usuário LOGADO: Redireciona para a página de perfil/histórico
-                window.location.href = "../historico/historico.html"; 
+                window.location.href = "../perfil/index.html"; 
             } else {
                 // Usuário NÃO LOGADO: Dispara o Toast e envia para o login
                 exibirToast("⚠️ Você não está logado! Redirecionando para o login...", false);
