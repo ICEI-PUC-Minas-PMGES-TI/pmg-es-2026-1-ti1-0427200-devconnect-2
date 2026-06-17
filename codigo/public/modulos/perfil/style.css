@@ -1,0 +1,242 @@
+:root {
+    --verde-escuro:  #1e5222;
+    --verde-medio:   #2D7A45;
+    --verde-claro:   #E8F5EE;
+    --verde-borda:   #A8D5B8;
+    --amber:         #F5A623;
+    --amber-hover:   #D98E14; /* Tom ligeiramente mais escuro para o efeito hover */
+    --cinza-bg:      #F7F8FA;
+    --cinza-borda:   #E0E3E8;
+    --cinza-texto:   #6B7280;
+    --texto:         #1A1D23;
+    --branco:        #FFFFFF;
+    --radius:        12px;
+    --shadow:        0 4px 16px rgba(45, 122, 69, 0.06); /* Sombra levemente esverdeada */
+    --t:             0.18s ease;
+}
+
+body {
+    background-color: var(--cinza-bg);
+    color: var(--texto);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Sidebar Customizada */
+.sidebar {
+    background-color: var(--branco);
+    min-height: 100vh;
+    padding: 30px 20px;
+    border-right: 1px solid var(--cinza-borda);
+    box-shadow: var(--shadow);
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--verde-claro);
+    border: 3px solid var(--verde-medio); /* Destacando a borda com o verde principal */
+    margin: auto;
+    background-image: url('https://via.placeholder.com/80');
+    background-size: cover;
+    background-position: center;
+}
+
+#nomeUsuario {
+    color: var(--texto);
+    font-weight: 700;
+}
+
+#cargoUsuario {
+    color: var(--amber) !important; /* Mudado para Laranja para dar mais contraste com o nome */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+.menu-item {
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    cursor: pointer;
+    color: var(--cinza-texto);
+    font-weight: 500;
+    transition: all var(--t);
+}
+
+.menu-item:hover {
+    background-color: var(--verde-claro);
+    color: var(--verde-escuro);
+    padding-left: 20px;
+}
+
+.menu-item.ativo {
+    background-color: var(--verde-medio); /* Fundo preenchido com o verde médio */
+    color: var(--branco); /* Texto branco para alto contraste */
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(45, 122, 69, 0.2);
+}
+
+/* Conteúdo Principal */
+#tituloPagina {
+    font-weight: 800;
+    color: var(--texto);
+}
+
+#descricaoPagina {
+    color: var(--cinza-texto) !important;
+}
+
+/* Seção de Filtros */
+.card-filtro {
+    background-color: var(--branco);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--verde-borda); /* Borda esverdeada sutil para harmonizar */
+}
+
+.card-filtro h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--verde-escuro); /* Título do filtro em verde escuro */
+}
+
+.linha-filtro {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.linha-filtro input,
+.linha-filtro select {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 14px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    background-color: var(--branco);
+    color: var(--texto);
+    outline: none;
+    transition: border var(--t);
+}
+
+.linha-filtro input:focus,
+.linha-filtro select:focus {
+    border-color: var(--verde-medio);
+    box-shadow: 0 0 0 3px rgba(45, 122, 69, 0.1);
+}
+
+/* Botão de Busca focado no Laranja para quebrar o excesso de verde */
+.linha-filtro button {
+    padding: 10px 24px;
+    background-color: var(--amber);
+    color: var(--branco);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--t);
+    box-shadow: 0 4px 12px rgba(245, 166, 35, 0.2);
+}
+
+.linha-filtro button:hover {
+    background-color: var(--amber-hover);
+    transform: translateY(-1px);
+}
+
+/* Cards de Indicadores */
+.card-info {
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--radius);
+    background-color: var(--branco);
+    box-shadow: var(--shadow);
+    transition: transform var(--t), border var(--t);
+}
+
+.card-info:hover {
+    transform: translateY(-3px);
+    border-color: var(--verde-borda);
+}
+
+.card-info small {
+    color: var(--cinza-texto);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.card-info h5 {
+    color: var(--verde-escuro); /* Valores principais destacados em verde */
+    font-weight: 700;
+    margin: 0;
+    font-size: 22px;
+}
+
+.icone {
+    width: 46px;
+    height: 46px;
+    background-color: var(--verde-claro);
+    color: var(--verde-medio);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border: 1px solid var(--verde-borda);
+}
+
+/* Tabela de Histórico */
+.historico-card {
+    border-radius: var(--radius);
+    border: 1px solid var(--cinza-borda);
+    background-color: var(--branco);
+    box-shadow: var(--shadow);
+}
+
+.table thead th {
+    color: var(--verde-escuro); /* Cabeçalho da tabela puxando o tom da paleta */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--verde-borda);
+    padding-bottom: 12px;
+}
+
+.table tbody td {
+    padding: 16px 12px;
+    color: var(--texto);
+    font-size: 14px;
+    border-bottom: 1px solid var(--cinza-bg);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(232, 245, 238, 0.4); /* Efeito sutil de hover nas linhas */
+}
+
+/* Badges de Status atualizados */
+.badge-concluida {
+    background-color: var(--verde-claro);
+    color: var(--verde-escuro);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 12px;
+    border: 1px solid var(--verde-borda);
+}
+
+.badge-pendente {
+    background-color: #FFF8E7; /* Fundo âmbar bem clarinho */
+    color: var(--amber);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 12px;
+    border: 1px solid rgba(245, 166, 35, 0.3);
+}

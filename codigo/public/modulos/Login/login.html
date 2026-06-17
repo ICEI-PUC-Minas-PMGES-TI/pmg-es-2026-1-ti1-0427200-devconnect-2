@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso - Conexão Bem</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="toast-container"></div>
+
+    <div class="login-container">
+        <div class="login-banner">
+            <div class="banner-content">
+                <h2>Transforme vidas com um clique. 💚</h2>
+                <p>Junte-se à nossa comunidade e apoie causas que mudam o mundo.</p>
+            </div>
+        </div>
+
+        <div class="login-form-box">
+            <div class="form-tabs">
+                <button type="button" class="tab-btn active" onclick="switchTab('cadastro')">Cadastro</button>
+                <button type="button" class="tab-btn" onclick="switchTab('login')">Login</button>
+            </div>
+
+            <div class="form-header">
+                <h1 id="form-title">Criar Conta</h1>
+                <p id="form-subtitle">Faça parte dessa corrente de solidariedade.</p>
+            </div>
+
+            <form id="auth-form" autocomplete="off">
+                <div class="input-group" id="group-name">
+                    <label for="name">Nome Completo</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" id="name" placeholder="Digite seu nome" required>
+                    </div>
+                </div>
+
+                <div class="input-group" id="group-cpf">
+                    <label for="cpf">CPF</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-id-card"></i>
+                        <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="email" placeholder="exemplo@email.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-flex">
+                        <label for="password">Senha</label>
+                        <a href="javascript:void(0);" id="forgot-password" class="helper-link"
+                            style="display: none;">Esqueceu a senha?</a>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" placeholder="Digite sua senha" required>
+                    </div>
+                </div>
+
+                <div class="input-group" id="group-confirm">
+                    <label for="confirm-password">Confirmar Senha</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <input type="password" id="confirm-password" placeholder="Repita a senha" required>
+                    </div>
+                </div>
+
+                <div class="terms-wrapper" id="group-terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">Aceito os <a href="javascript:void(0);">Termos de Uso</a> e <a
+                            href="javascript:void(0);">Políticas de Privacidade</a>.</label>
+                </div>
+
+                <button type="submit" class="btn-submit" id="btn-submit" data-mode="cadastro">Cadastrar e Ajudar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-// pega o id da vaquinha pela url (?id=...)
 var params = new URLSearchParams(window.location.search)
 var id = params.get('id')
 
@@ -18,7 +17,11 @@ if (id == null) {
         document.getElementById('dataCriacao').textContent = v.dataCriacao
         document.getElementById('arrecadado').textContent = 'R$ ' + v.arrecadado.toLocaleString('pt-BR')
 
-        // calcula a porcentagem so se a meta for um numero valido
+        // ================= ATUALIZAÇÃO DO LINK DE DOAÇÃO =================
+        // Atualiza o href enviando o ID e o tipo para o script de pagamento reconhecer
+        document.getElementById('btnDoar').href = '../pagamento/index.html?tipo=vaquinhas&id=' + id
+        // =================================================================
+
         var porcentagem = 0
         if (v.meta > 0) {
             porcentagem = Math.round((v.arrecadado / v.meta) * 100)

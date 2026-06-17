@@ -650,3 +650,60 @@ body {
   *, *::before, *::after { transition: none !important; }
   .card-barra-fill { transition: none !important; }
 }
+
+/* Container que vira o fundo escuro (Overlay) ocupando a tela toda */
+#toast-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro transparente */
+    backdrop-filter: blur(3px); /* Leve desfoque no fundo para dar elegância */
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none; /* Desativa cliques enquanto sumido */
+    transition: opacity 0.25s ease;
+}
+
+/* Quando o container do fundo escuro for ativado */
+#toast-container.mostrar-fundo {
+    opacity: 1;
+    pointer-events: auto; /* Bloqueia interações com o resto da página */
+}
+
+/* Caixa do Toast centralizada e com animação de escala (zoom) */
+.custom-toast {
+    background-color: #1A1D23;
+    color: #FFFFFF;
+    padding: 24px 32px;
+    border-radius: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 450px;
+    width: 90%; /* Responsivo no mobile */
+    text-align: center;
+    justify-content: center;
+    border-left: 6px solid #F5A623; /* Detalhe em âmbar */
+    
+    /* Estado inicial da animação do card */
+    transform: scale(0.85);
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Quando o toast ganhar foco e crescer */
+.custom-toast.mostrar-card {
+    transform: scale(1);
+}
+
+.custom-toast.success {
+    border-left-color: #2D7A45;
+}

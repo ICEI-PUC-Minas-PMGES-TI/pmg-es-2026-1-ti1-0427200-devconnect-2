@@ -1,72 +1,78 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Detalhes da Vaquinha — ConectaPlus</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="detalhes-vaquinha.css"/>
-</head>
-<body>
+var params = new URLSearchParams(window.location.search)
+var id = params.get('id')
 
-  <!-- HEADER -->
-  <header class="header">
-    <a href="../home-page/home_page.html" class="btn-voltar">&#8592;</a>
-    <div class="header-texto">
-      <span class="app-nome">ConectaPlus</span>
-      <span class="header-titulo">Detalhes da vaquinha</span>
-    </div>
-  </header>
+if (id == null) {
+    document.getElementById('titulo').textContent = 'Vaquinha nao encontrada.'
+} else {
+    fetch('http://localhost:3000/vaquinhas/' + id)
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(v) {
 
-  <!-- CONTEUDO -->
-  <main class="container">
-    <div class="card-detalhe">
+        document.getElementById('categoria').textContent = v.categoria
+        document.getElementById('titulo').textContent = v.titulo
+        document.getElementById('descricao').textContent = v.descricao
+        document.getElementById('tipoDoacao').textContent = v.tipoDoacao
+        document.getElementById('dataCriacao').textContent = v.dataCriacao
+        document.getElementById('arrecadado').textContent = 'R$ ' + v.arrecadado.toLocaleString('pt-BR')
 
-      <div id="imagemVaquinha" class="imagem-placeholder">🤝</div>
+        // ================= ATUALIZAÇÃO DO LINK DE DOAÇÃO =================
+        // Atualiza o href enviando o ID e o tipo para o script de pagamento reconhecer
+        document.getElementById('btnDoar').href = '../pagamento/index.html?tipo=vaquinhas&id=' + id
+        // =================================================================
 
-      <div class="conteudo">
-        <div class="topo">
-          <span id="categoria" class="badge-categoria"></span>
-          <span id="dataLimiteTopo" class="data-limite"></span>
-        </div>
+        var porcentagem = 0
+        if (v.meta > 0) {
+            porcentagem = Math.round((v.arrecadado / v.meta) * 100)
+            if (porcentagem > 100) {
+                porcentagem = 100
+            }
+            document.getElementById('metaTexto').textContent = 'Meta: R$ ' + v.meta.toLocaleString('pt-BR')
+        } else {
+            document.getElementById('metaTexto').textContent = 'Meta nao definida'
+        }
 
-        <h1 id="titulo" class="titulo"></h1>
-        <p id="descricao" class="descricao"></p>
+        document.getElementById('barraProgresso').style.width = porcentagem + '%'
+        document.getElementById('porcentagem').textContent = porcentagem + '% da meta atingida'
 
-        <div class="meta-wrapper">
-          <div class="meta-label">
-            <span>Arrecadado</span>
-            <strong id="arrecadado"></strong>
-          </div>
-          <div class="barra-fundo">
-            <div id="barraProgresso" class="barra-fill"></div>
-          </div>
-          <div class="meta-rodape">
-            <span id="porcentagem"></span>
-            <span id="metaTexto"></span>
-          </div>
-        </div>
+        // so mostra a data limite se ela existir
+        if (v.dataLimite) {
+            document.getElementById('dataLimite').textContent = v.dataLimite
+            document.getElementById('dataLimiteTopo').textContent = 'Ate ' + v.dataLimite
+        } else {
+            document.getElementById('linhaDataLimite').classList.add('oculto')
+        }
 
-        <hr>
+        // so mostra o aviso de emergencial se for true
+        if (v.emergencial != true) {
+            document.getElementById('linhaEmergencial').classList.add('oculto')
+        }
 
-        <p class="info-linha"><strong>Tipo de doação:</strong> <span id="tipoDoacao"></span></p>
-        <p class="info-linha"><strong>Data de criação:</strong> <span id="dataCriacao"></span></p>
-        <p class="info-linha" id="linhaDataLimite"><strong>Data limite:</strong> <span id="dataLimite"></span></p>
-        <p class="info-linha" id="linhaEmergencial"><strong>Emergencial:</strong> Sim</p>
+        // so mostra a imagem se for um arquivo enviado (base64)
+        if (v.imagem && v.imagem.indexOf('data:image') == 0) {
+            var img = document.createElement('img')
+            img.src = v.imagem
+            document.getElementById('imagemVaquinha').innerHTML = ''
+            document.getElementById('imagemVaquinha').appendChild(img)
+        }
 
-        <div id="blocoInformacoes" class="bloco-informacoes">
-          <h3>Informações adicionais</h3>
-          <p id="informacoes"></p>
-        </div>
+        // so mostra informacoes adicionais se existirem
+        if (v.informacoes) {
+            document.getElementById('informacoes').textContent = v.informacoes
+        } else {
+            document.getElementById('blocoInformacoes').classList.add('oculto')
+        }
 
-        <a id="linkOng" href="#" class="link-ong">Ver ONG responsável →</a>
-
-      </div>
-    </div>
-  </main>
-
-  <script src="detalhes-vaquinha.js"></script>
-</body>
-</html>
+        // so mostra o link da ong se a vaquinha tiver uma vinculada
+        if (v.ongId) {
+            document.getElementById('linkOng').href = '../detalhes-ong/detalhes-ong.html?id=' + v.ongId
+        } else {
+            document.getElementById('linkOng').classList.add('oculto')
+        }
+    })
+    .catch(function(error) {
+        document.getElementById('titulo').textContent = 'Erro ao carregar a vaquinha.'
+        console.log(error)
+    })
+}
