@@ -1,6 +1,56 @@
 {
-  "usuarios": [],
-  "vaquinhas": [],
+  "usuarios": [
+    {
+      "nome": "sdfsdf",
+      "cpf": "11111111111111",
+      "email": "11111sdfgidiugdfiu@gmail.com",
+      "senha": "101010",
+      "token": "",
+      "doacoes": [],
+      "criacoes": [],
+      "id": 1
+    },
+    {
+      "nome": "luis",
+      "cpf": "12321312312312",
+      "email": "teste1234@gmail.com",
+      "senha": "luis1234",
+      "token": "c675cb43-1e2b-4db6-9cc5-39d7271ece40",
+      "doacoes": [],
+      "criacoes": [],
+      "id": 2
+    }
+  ],
+  "vaquinhas": [
+    {
+      "titulo": "vaquinha teste",
+      "descricao": "fodgdfiogidfogndofig",
+      "categoria": "Educação",
+      "tipoDoacao": "dinheiro",
+      "meta": 190,
+      "arrecadado": 0,
+      "informacoes": "fdgdfgdfg",
+      "imagem": "http://127.0.0.1:5502/pmg-es-2026-1-ti1-0427200-devconnect-2/codigo/public/modulos/vaquinha/criar-vaquinha.html",
+      "emergencial": false,
+      "dataCriacao": "2026-06-18",
+      "dataLimite": "",
+      "id": 1
+    },
+    {
+      "titulo": "asda",
+      "descricao": "1sdfsdsd",
+      "categoria": "Alimento",
+      "tipoDoacao": "alimentos",
+      "meta": 100000000,
+      "arrecadado": 0,
+      "informacoes": "sdfsdfsdfsdf",
+      "imagem": "http://127.0.0.1:5502/pmg-es-2026-1-ti1-0427200-devconnect-2/codigo/public/modulos/vaquinha/criar-vaquinha.html",
+      "emergencial": false,
+      "dataCriacao": "2026-06-18",
+      "dataLimite": "",
+      "id": 2
+    }
+  ],
   "ongs": [],
   "$schema": "./node_modules/json-server/schema.json"
 }
