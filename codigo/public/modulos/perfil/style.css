@@ -240,3 +240,27 @@ body {
     font-size: 12px;
     border: 1px solid rgba(245, 166, 35, 0.3);
 }
+
+/* Botão voltar ao topo */
+#btnTopo {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: #198754;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,.25);
+    transition: all .3s ease;
+    z-index: 999;
+}
+
+#btnTopo:hover {
+    transform: translateY(-4px);
+    background: #157347;
+}
