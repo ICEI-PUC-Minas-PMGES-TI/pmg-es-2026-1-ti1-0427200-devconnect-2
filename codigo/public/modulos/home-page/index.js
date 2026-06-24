@@ -92,11 +92,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 dataTexto = 'Até ' + v.dataLimite;
             }
 
+            // mostra a imagem real se for base64, senao mostra o emoji
+            var imagemHtml = '<div class="card-imagem-placeholder">🤝</div>';
+            if (v.imagem && v.imagem.indexOf('data:image') == 0) {
+                imagemHtml = '<img class="card-imagem" src="' + v.imagem + '" alt="' + v.titulo + '">';
+            }
+
             var card = document.createElement('div');
             card.className = 'card';
 
             card.innerHTML =
-                '<div class="card-imagem-placeholder">🤝</div>' +
+                imagemHtml +
                 '<div class="card-corpo">' +
                 '<div class="card-topo">' +
                 '<span class="card-categoria">' + v.categoria + '</span>' +
