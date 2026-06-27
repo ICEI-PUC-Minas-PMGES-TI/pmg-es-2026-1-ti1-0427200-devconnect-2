@@ -182,25 +182,35 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
             btnSubmit.innerText = textoOriginalBotao;
         }
     } else {
-        // --- FLUXO DE LOGIN CORRIGIDO ---
+        // --- FLUXO DE LOGIN ---
         try {
-            // Limpa espaços invisíveis e força tudo para minúsculo
+            // Limpa espaços invisíveis e força o e-mail para minúsculo
             const emailTratado = email.trim().toLowerCase();
             const senhaTratada = senha.trim();
 
-            // 1. Faz a busca no json-server apenas filtrando pelo e-mail
-            const resposta = await fetch(`${API_URL}?email=${emailTratado}`);
+            if (!emailTratado || !senhaTratada) {
+                mostrarToast('Por favor, preencha todos os campos.', 'error');
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = textoOriginalBotao;
+                return;
+            }
+
+            // 1. Faz a busca no json-server filtrando especificamente pelo e-mail informado
+            const resposta = await fetch(`${API_URL}?email=${encodeURIComponent(emailTratado)}`);
             const usuariosEncontrados = await resposta.json();
 
-            // 2. Confere se encontrou alguma conta vinculada a esse e-mail
-            if (usuariosEncontrados.length > 0) {
+            // 2. Confere se encontrou exatamente uma conta vinculada a esse e-mail
+            if (usuariosEncontrados && usuariosEncontrados.length > 0) {
+                // Seleciona o primeiro usuário retornado pela lista de busca
                 const usuarioLogado = usuariosEncontrados[0];
 
-                // 3. Verifica se a senha do banco bate exatamente com a digitada
-                if (usuarioLogado.senha === senhaTratada) {
+                // 3. Verifica se a senha do banco bate exatamente com a digitada (comparando strings limpas)
+                if (usuarioLogado.senha && usuarioLogado.senha.trim() === senhaTratada) {
+                    
+                    // Geração de token único e dinâmico via UUID (Universally Unique Identifier) v4
                     const tokenGerado = crypto.randomUUID();
 
-                    // 4. Salva o token gerado usando a rota direta por ID string
+                    // 4. Salva o token gerado diretamente no objeto do usuário usando a rota por ID
                     const atualizacaoToken = await fetch(`${API_URL}/${usuarioLogado.id}`, {
                         method: 'PATCH',
                         headers: { 'Content-Type': 'application/json' },
@@ -208,37 +218,37 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
                     });
 
                     if (atualizacaoToken.ok) {
-                        // Salva os dados necessários do estado local no navegador
+                        // Armazena temporariamente dados mínimos para manter o estado da sessão no navegador
                         sessionStorage.setItem('usuarioToken', tokenGerado);
                         sessionStorage.setItem('abaAtual', 'login');
                         sessionStorage.setItem('toastAgendadoMsg', `Bem-vindo de volta, ${usuarioLogado.nome}!`);
                         
-                        // Limpa os campos do formulário antes de mudar de tela
+                        // Limpa os campos de credenciais por segurança antes do redirecionamento
                         document.getElementById('email').value = '';
                         document.getElementById('password').value = '';
                         btnSubmit.disabled = false;
 
                         // Redireciona de forma direta para a home page
                         window.location.href = "../home-page/home_page.html"; 
-
                     } else {
-                        mostrarToast('Erro ao gerar sessão de segurança.', 'error');
+                        mostrarToast('Erro ao gerar sessão de segurança no servidor.', 'error');
                         btnSubmit.disabled = false;
                         btnSubmit.innerText = textoOriginalBotao;
                     }
                 } else {
-                    // Senha errada
+                    // Mensagem genérica por boas práticas de segurança (não informar se foi a senha ou e-mail que falhou)
                     mostrarToast('E-mail ou senha incorretos.', 'error');
                     btnSubmit.disabled = false;
                     btnSubmit.innerText = textoOriginalBotao;
                 }
             } else {
-                // E-mail não encontrado
+                // E-mail não encontrado no banco de dados
                 mostrarToast('E-mail ou senha incorretos.', 'error');
                 btnSubmit.disabled = false;
                 btnSubmit.innerText = textoOriginalBotao;
             }
         } catch (error) {
+            console.error('Erro detalhado no login:', error);
             mostrarToast('Não foi possível conectar ao servidor backend.', 'error');
             btnSubmit.disabled = false;
             btnSubmit.innerText = textoOriginalBotao;
