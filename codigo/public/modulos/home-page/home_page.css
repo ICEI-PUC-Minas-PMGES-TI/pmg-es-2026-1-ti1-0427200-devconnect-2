@@ -707,3 +707,12 @@ body {
 .custom-toast.success {
     border-left-color: #2D7A45;
 }
+
+/* Estilos para as novas abas de tipo */
+.filtro-aba:not(.ativo):hover {
+  color: var(--verde-escuro) !important;
+}
+.filtro-aba.ativo {
+  color: var(--verde-medio) !important;
+  border-bottom-color: var(--verde-medio) !important;
+}

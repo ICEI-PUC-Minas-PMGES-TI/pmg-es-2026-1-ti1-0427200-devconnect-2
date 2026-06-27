@@ -22,9 +22,6 @@
         <span class="logo-nome">ConectaPlus</span>
       </a>
       <nav class="nav">
-        <a href="../vaquinha/criar-vaquinha.html" class="nav-link nav-destaque">+ Criar Vaquinha</a>
-        <a href="#" class="nav-link">ONGs</a>
-        <a href="#" class="nav-link">Emergências</a>
         <a href="#" class="nav-link nav-perfil">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="8" r="4"/>
@@ -50,7 +47,7 @@
         <span class="hero-eyebrow">Plataforma de doações</span>
         <h1 class="hero-titulo">Pequenas ações,<br>grandes mudanças.</h1>
         <p class="hero-sub">Apoie campanhas reais de pessoas e ONGs que precisam da sua ajuda. Toda doação conta.</p>
-        <a href="../vaquinha/criar-vaquinha.html" class="btn-ambar">Criar sua vaquinha</a>
+        <a href="../vaquinha/criar-vaquinha.html" class="btn-ambar">Criar uma Vaquinha / ONG</a>
       </div>
 
     </div>
@@ -64,8 +61,14 @@
     <!-- LISTA DE CAMPANHAS -->
     <main class="campanhas" id="campanhas">
 
-      <!-- FILTROS RÁPIDOS (mobile-friendly) -->
-      <div class="filtros-rapidos" id="filtros-rapidos">
+      <!-- ABAS PRINCIPAIS -->
+      <div class="abas-principais" style="display: flex; gap: 12px; margin-bottom: 16px; border-bottom: 2px solid var(--cinza-borda); padding-bottom: 8px;">
+        <button class="filtro-aba ativo" data-tipo="Vaquinha" style="background: none; border: none; font-size: 1.1rem; font-weight: 700; color: var(--verde-medio); cursor: pointer; padding: 4px 12px; border-bottom: 3px solid var(--verde-medio); margin-bottom: -11px; transition: all var(--t);">Vaquinhas</button>
+        <button class="filtro-aba" data-tipo="ONG" style="background: none; border: none; font-size: 1.1rem; font-weight: 600; color: var(--cinza-texto); cursor: pointer; padding: 4px 12px; border-bottom: 3px solid transparent; margin-bottom: -11px; transition: all var(--t);">ONGs</button>
+      </div>
+
+      <!-- FILTROS RÁPIDOS (Categorias) -->
+      <div class="filtros-rapidos" id="filtros-rapidos" style="margin-bottom: 20px;">
         <button class="filtro-chip ativo" data-cat="todos">Todos</button>
         <button class="filtro-chip" data-cat="Saúde">Saúde</button>
         <button class="filtro-chip" data-cat="Educação">Educação</button>
@@ -130,7 +133,7 @@
 
       <div class="sidebar-bloco sidebar-cta">
         <p class="cta-texto">Tem uma causa para defender? Crie sua vaquinha agora.</p>
-        <a href="../vaquinha/criar-vaquinha.html" class="btn-ambar btn-ambar-sm">Criar vaquinha</a>
+        <a href="../vaquinha/criar-vaquinha.html" class="btn-ambar btn-ambar-sm">Criar</a>
       </div>
 
     </aside>

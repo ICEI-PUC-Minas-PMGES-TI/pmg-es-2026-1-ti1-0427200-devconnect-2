@@ -272,3 +272,44 @@ body {
   color: var(--verde-medio);
   text-decoration: underline;
 }
+
+/* ==========================================================================
+   BOTÕES FLUTUANTES (HOME E VOLTAR AO TOPO)
+   ========================================================================== */
+
+#btnHome {
+    position: fixed;
+    bottom: 95px; /* Fica posicionado logo acima do botão de voltar ao topo */
+    right: 30px;
+    background-color: #2d7a45; /* Cor verde correspondente ao tema */
+    color: #ffffff !important;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 9999; /* Garante que ele fique por cima de qualquer card */
+}
+
+#btnHome:hover {
+    background-color: #1e522f;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Ajuste preventivo para o seu botão de voltar ao topo não sobrepor o da Home */
+#btnTopo {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 9999;
+}

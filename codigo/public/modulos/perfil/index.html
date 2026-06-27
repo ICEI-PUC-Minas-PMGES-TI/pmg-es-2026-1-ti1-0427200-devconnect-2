@@ -7,8 +7,7 @@
     <title>Histórico de Doações</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -26,9 +25,10 @@
                 </div>
 
                 <div class="mt-5">
-                    <div class="menu-item">Meu perfil</div>
-                    <div class="menu-item ativo">Histórico de doações</div>
-                    <div class="menu-item">Sair</div>
+                    <div class="menu-item" data-tab="perfil">Meu perfil</div>
+                    <div class="menu-item ativo" data-tab="historico">Histórico de doações</div>
+                    <div class="menu-item" data-tab="vaquinhas">Minhas criações</div>
+                    <div class="menu-item" data-tab="sair">Sair</div>
                 </div>
             </div>
 
@@ -101,14 +101,7 @@
                                 </tr>
                             </thead>
                             <tbody id="tabelaCorpoDoacoes">
-                                <tr>
-                                    <td>12/06/2026</td>
-                                    <td><strong>Campanha do Agasalho</strong></td>
-                                    <td style="color: var(--verde-escuro); font-weight: 600;">R$ 50,00</td>
-                                    <td>Pix</td>
-                                    <td><span class="badge-concluida">Aprovado</span></td>
-                                </tr>
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -116,10 +109,11 @@
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
-    <button id="btnTopo" title="Voltar ao topo">
-    ↑
-</button>
+    
+    <a href="../home-page/home_page.html" id="btnHome" title="Voltar para a Home">🏠</a>
+    <button id="btnTopo" title="Voltar ao topo">↑</button>
 </body>
 
 </html>

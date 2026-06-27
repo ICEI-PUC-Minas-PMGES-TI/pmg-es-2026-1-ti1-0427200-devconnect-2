@@ -9,7 +9,7 @@
 <body>
 
     <header class="header">
-        <a href="../index.html" class="btn-voltar">←</a>
+        <a href="../home-page/home_page.html" class="btn-voltar">←</a>
         <div class="header-texto">
             <span class="app-nome">Vaquinhas</span>
             <span class="header-titulo">Criar Campanha</span>
@@ -17,11 +17,28 @@
     </header>
 
     <div class="container">
+        <div class="abas-cadastro" style="display: flex; gap: 16px; margin-bottom: 24px; border-bottom: 2px solid var(--cinza-borda); padding-bottom: 8px;">
+            <button type="button" class="filtro-aba ativo" id="aba-vaquinha" style="background: none; border: none; font-size: 1.1rem; font-weight: 700; color: var(--verde-medio); cursor: pointer; padding: 4px 12px; border-bottom: 3px solid var(--verde-medio); margin-bottom: -11px; transition: all var(--t);">Nova Vaquinha</button>
+            <button type="button" class="filtro-aba" id="aba-ong" style="background: none; border: none; font-size: 1.1rem; font-weight: 600; color: var(--cinza-texto); cursor: pointer; padding: 4px 12px; border-bottom: 3px solid transparent; margin-bottom: -11px; transition: all var(--t);">Nova ONG</button>
+        </div>
+
         <form id="form-vaquinha">
             <div class="campo">
-                <label for="titulo">Título da Vaquinha *</label>
+                <label id="label-titulo" for="titulo">Título da Vaquinha *</label>
                 <input type="text" id="titulo" placeholder="Ex: Ajuda para cirurgia do Totó">
                 <span id="erro-titulo" class="erro"></span>
+            </div>
+
+            <div class="campo oculto" id="bloco-razao">
+                <label for="razao-social">Razão Social / Nome da Instituição *</label>
+                <input type="text" id="razao-social" placeholder="Ex: Associação de Apoio aos Animais de BH">
+                <span id="erro-razao" class="erro"></span>
+            </div>
+
+            <div class="campo oculto" id="bloco-cnpj">
+                <label for="cnpj">CNPJ *</label>
+                <input type="text" id="cnpj" placeholder="Ex: 00.000.000/0001-00" maxlength="18">
+                <span id="erro-cnpj" class="erro"></span>
             </div>
 
             <div class="campo">
@@ -58,6 +75,11 @@
                 <span id="erro-meta" class="erro"></span>
             </div>
 
+            <div class="campo oculto" id="bloco-site">
+                <label for="site">Website ou Rede Social da ONG (Opcional)</label>
+                <input type="url" id="site" placeholder="Ex: https://www.instagram.com/suaong">
+            </div>
+
             <div class="campo">
                 <label for="informacoes">Informações Detalhadas (Opcional)</label>
                 <textarea id="informacoes" rows="4" placeholder="Conte a história completa aqui..."></textarea>
@@ -75,7 +97,7 @@
                 <input type="file" id="imagem" accept="image/*" style="display: none;">
             </div>
 
-            <button type="submit" class="btn-criar">Salvar e Visualizar</button>
+            <button type="submit" class="btn-criar" id="btn-submit">Salvar e Visualizar</button>
         </form>
 
         <div id="mensagem-sucesso" class="mensagem-sucesso oculto">
@@ -86,5 +108,8 @@
     </div>
 
     <script src="criar-vaquinha.js"></script>
+
+    <a href="../home-page/home_page.html" id="btnHome" title="Voltar para a Home">🏠</a>
+    <button id="btnTopo" title="Voltar ao topo">↑</button>
 </body>
 </html>

@@ -1,169 +1,108 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    // Endpoints do seu JSON Server
-    const API_USUARIOS = "http://localhost:3000/usuarios"; 
-    const API_VAQUINHAS = "http://localhost:3000/vaquinhas"; 
-    const API_ANONIMOS = "http://localhost:3000/anonimos"; // Nova rota para doações sem login
-
-    // 1. Recupera os IDs necessários (Sessão e URL)
+    // Configurações
+    const API_USUARIOS = "http://localhost:3000/usuarios";
+    const API_ANONIMOS = "http://localhost:3000/anonimos";
     const TOKEN_USUARIO = sessionStorage.getItem("usuarioToken");
+
+    // Identificadores da URL
     const urlParams = new URLSearchParams(window.location.search);
-    const idDaVaquinha = urlParams.get('id') || "12312"; 
+    const idDaVaquinha = urlParams.get('id');
+    const idDonoDaCampanha = urlParams.get('usuarioId');
 
-    // Elementos do DOM - Resumo da Vaquinha
-    const resumoTag = document.getElementById("resumo-tag");
-    const resumoTitulo = document.getElementById("resumo-titulo");
-
-    // Elementos do DOM - Formulário e Valores
-    const donationAmountInput = document.getElementById("donation-amount");
-    const txtSubtotal = document.getElementById("txt-subtotal");
-    const txtTotal = document.getElementById("txt-total");
-    const userNameInput = document.getElementById("user-name");
-    const userCpfInput = document.getElementById("user-cpf");
-    const userEmailInput = document.getElementById("user-email");
+    // Elementos DOM
     const btnGerarPix = document.getElementById("btn-gerar-pix");
     const formCartao = document.getElementById("form-cartao");
+    const inputValor = document.getElementById("donation-amount");
+    const inputNome = document.getElementById("user-name");
 
-    // Variável para guardar os dados da vaquinha em memória temporária
-    let dadosDaVaquinhaGlobal = null;
+    // Variável para guardar o título garantido
+    let tituloDaVaquinha = "Causa Apoiada";
 
-    // --- PASSO 1: BUSCAR E EXIBIR AS INFORMAÇÕES DA VAQUINHA ---
-    async function carregarDadosDaVaquinha() {
+    // --- CARREGAMENTO INICIAL ---
+    async function carregarDadosIniciais() {
+        if (!idDonoDaCampanha) return;
         try {
-            const resposta = await fetch(`${API_VAQUINHAS}/${idDaVaquinha}`);
-            if (!resposta.ok) throw new Error("Vaquinha não encontrada no banco de dados.");
-            
-            dadosDaVaquinhaGlobal = await resposta.json();
-
-            // Atualiza os textos do lado direito (Resumo) com os dados vindos do db.json
-            if (resumoTitulo) resumoTitulo.textContent = dadosDaVaquinhaGlobal.titulo || dadosDaVaquinhaGlobal.vaquinha_titulo;
-            if (resumoTag) resumoTag.textContent = dadosDaVaquinhaGlobal.categoria || dadosDaVaquinhaGlobal.vaquinha_tag;
-            
-        } catch (erro) {
-            console.error("Erro ao carregar dados da vaquinha:", erro);
+            const res = await fetch(`${API_USUARIOS}/${idDonoDaCampanha}`);
+            const dono = await res.json();
+            const vaquinha = dono.criacoes.find(c => String(c.id) === String(idDaVaquinha));
+            if (vaquinha) {
+                tituloDaVaquinha = vaquinha.titulo;
+                document.getElementById("resumo-titulo").textContent = tituloDaVaquinha;
+                document.getElementById("resumo-tag").textContent = vaquinha.categoria || "Geral";
+            }
+        } catch (e) {
+            console.error("Erro ao buscar dados:", e);
         }
     }
+    await carregarDadosIniciais();
 
-    // Executa a busca inicial ao abrir a página
-    await carregarDadosDaVaquinha();
+    // --- LÓGICA PRINCIPAL DE PAGAMENTO ---
+    async function processarDoacao(e, metodo) {
+        if (e) e.preventDefault();
 
-    // --- PASSO 2: ATUALIZAÇÃO DINÂMICA DOS VALORES EM TELA ---
-    donationAmountInput.addEventListener("input", (e) => {
-        let valor = parseFloat(e.target.value);
-        if (isNaN(valor) || valor < 0) valor = 0;
-        
-        const valorFormatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        txtSubtotal.textContent = valorFormatado;
-        txtTotal.textContent = valorFormatado;
-    });
+        const nome = inputNome.value.trim();
+        const valor = parseFloat(inputValor.value);
 
-    // --- PASSO 3: PROCESSAR A DOAÇÃO ---
-    async function processarDoacao(e, metodoPagamento) {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        const nome = userNameInput.value.trim();
-        const cpf = userCpfInput.value.trim();
-        const email = userEmailInput.value.trim();
-        const valorDoacao = parseFloat(donationAmountInput.value);
-
-        if (!nome || !cpf || !email) {
-            alert("Por favor, preencha todos os dados de identificação.");
-            return;
-        }
-
-        if (isNaN(valorDoacao) || valorDoacao < 5) {
-            alert("O valor mínimo de contribuição é R$ 5,00.");
+        if (!nome || isNaN(valor) || valor < 5) {
+            alert("Preencha seu nome e valor mínimo de R$ 5,00.");
             return;
         }
 
         try {
-            // Gera o ID único desta transação específica
-            const idTransacaoDoacao = "doc_" + Math.random().toString(36).substr(2, 9);
+            // 1. ATUALIZAR O ARRECADADO NA ONG (Dono da Campanha)
+            const resDono = await fetch(`${API_USUARIOS}/${idDonoDaCampanha}`);
+            const dono = await resDono.json();
+            const idx = dono.criacoes.findIndex(c => String(c.id) === String(idDaVaquinha));
+            
+            if (idx === -1) throw new Error("Campanha não encontrada.");
 
-            // Monta o objeto base da nova doação
+            // Garante soma matemática forçando tipo Number
+            const totalAtual = parseFloat(dono.criacoes[idx].arrecadado || 0);
+            dono.criacoes[idx].arrecadado = totalAtual + valor;
+
+            await fetch(`${API_USUARIOS}/${idDonoDaCampanha}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dono)
+            });
+
+            // 2. REGISTRAR A DOAÇÃO (Historico)
+            const idTransacao = "doc_" + Math.random().toString(36).substr(2, 9);
             const novaDoacao = {
-                id_doacao: idTransacaoDoacao,
-                vaquinha_id: idDaVaquinha, 
-                vaquinha_titulo: resumoTitulo.textContent,
-                vaquinha_tag: resumoTag.textContent,
-                valor: valorDoacao,
-                metodo: metodoPagamento,
-                data: new Date().toISOString(),
-                status: metodoPagamento === 'Pix' ? 'Aguardando Pagamento' : 'Aprovado'
+                id_doacao: idTransacao,
+                vaquinha_id: idDaVaquinha,
+                vaquinha_titulo: tituloDaVaquinha,
+                valor: valor,
+                metodo: metodo,
+                data: new Date().toISOString()
             };
 
             if (TOKEN_USUARIO) {
-                // === USUÁRIO LOGADO: VINCULA AO PERFIL ===
-                const respostaUserGet = await fetch(`${API_USUARIOS}?token=${TOKEN_USUARIO}`);
-                if (!respostaUserGet.ok) throw new Error("Erro ao buscar dados do usuário.");
-                
-                const usuariosEncontrados = await respostaUserGet.json();
-                if (usuariosEncontrados.length === 0) throw new Error("Usuário não localizado.");
-
-                const usuarioAtual = usuariosEncontrados[0];
-                const ID_REAL_DO_USUARIO = usuarioAtual.id; 
-
-                const listaDoacoesAtualizada = [...(usuarioAtual.doacoes || []), novaDoacao];
-
-                const respostaPatchUsuario = await fetch(`${API_USUARIOS}/${ID_REAL_DO_USUARIO}`, {
+                const res = await fetch(`${API_USUARIOS}?token=${TOKEN_USUARIO}`);
+                const [user] = await res.json();
+                await fetch(`${API_USUARIOS}/${user.id}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ doacoes: listaDoacoesAtualizada })
+                    body: JSON.stringify({ doacoes: [...(user.doacoes || []), novaDoacao] })
                 });
-
-                if (!respostaPatchUsuario.ok) throw new Error("Falha ao salvar a doação no perfil do usuário.");
             } else {
-                // === USUÁRIO NÃO LOGADO: SALVA NA BASE DE ANÔNIMOS ===
-                const dadosAnonimos = {
-                    ...novaDoacao,
-                    doador_nome: nome,
-                    doador_cpf: cpf,
-                    doador_email: email,
-                    tipo: "Anonimo"
-                };
-
-                const respostaPostAnonimo = await fetch(API_ANONIMOS, {
+                await fetch(API_ANONIMOS, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(dadosAnonimos)
+                    body: JSON.stringify({ ...novaDoacao, doador: nome })
                 });
-
-                if (!respostaPostAnonimo.ok) throw new Error("Falha ao registrar doação anônima.");
             }
 
-            // --- ATUALIZA O MONTANTE ACUMULADO DA VAQUINHA ---
-            const arrecadadoAtual = parseFloat(dadosDaVaquinhaGlobal.arrecadado || 0);
-            const novoTotalArrecadado = arrecadadoAtual + valorDoacao;
+            // 3. REDIRECIONAR APÓS SUCESSO TOTAL
+            window.location.href = `sucesso.html?id=${idTransacao}`;
 
-            const respostaPatchVaquinha = await fetch(`${API_VAQUINHAS}/${idDaVaquinha}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    arrecadado: novoTotalArrecadado
-                })
-            });
-
-            if (respostaPatchVaquinha.ok) {
-                // Redireciona para a página de sucesso levando o ID gerado
-                window.location.href = `sucesso.html?id=${idTransacaoDoacao}`;
-            } else {
-                throw new Error("Falha ao atualizar o saldo da vaquinha.");
-            }
-
-        } catch (erro) {
-            console.error("Erro na transação:", erro);
-            alert("Falha ao processar doação. Verifique a conexão com o servidor.");
+        } catch (err) {
+            console.error(err);
+            alert("Erro crítico na transação: " + err.message);
         }
     }
 
-    // Ouvintes de eventos dos botões de pagamento
-    btnGerarPix.addEventListener("click", (e) => {
-        processarDoacao(e, "Pix");
-    });
-
-    formCartao.addEventListener("submit", (e) => {
-        processarDoacao(e, "Cartão de Crédito");
-    });
+    // Event Listeners
+    if (btnGerarPix) btnGerarPix.onclick = (e) => processarDoacao(e, "Pix");
+    if (formCartao) formCartao.onsubmit = (e) => processarDoacao(e, "Cartão");
 });
