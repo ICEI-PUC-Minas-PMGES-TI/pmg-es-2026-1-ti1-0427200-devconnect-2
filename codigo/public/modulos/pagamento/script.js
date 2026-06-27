@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Endpoints do seu JSON Server
     const API_USUARIOS = "http://localhost:3000/usuarios"; 
     const API_VAQUINHAS = "http://localhost:3000/vaquinhas"; 
+    const API_ANONIMOS = "http://localhost:3000/anonimos"; // Nova rota para doações sem login
 
     // 1. Recupera os IDs necessários (Sessão e URL)
     const TOKEN_USUARIO = sessionStorage.getItem("usuarioToken");
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // Atualiza os textos do lado direito (Resumo) com os dados vindos do db.json
             if (resumoTitulo) resumoTitulo.textContent = dadosDaVaquinhaGlobal.titulo || dadosDaVaquinhaGlobal.vaquinha_titulo;
-            if (resumoTag) resumoTag.textContent = dadosDaVaquinhaGlobal.tag || dadosDaVaquinhaGlobal.vaquinha_tag;
+            if (resumoTag) resumoTag.textContent = dadosDaVaquinhaGlobal.categoria || dadosDaVaquinhaGlobal.vaquinha_tag;
             
         } catch (erro) {
             console.error("Erro ao carregar dados da vaquinha:", erro);
@@ -44,7 +45,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Executa a busca inicial ao abrir a página
     await carregarDadosDaVaquinha();
-
 
     // --- PASSO 2: ATUALIZAÇÃO DINÂMICA DOS VALORES EM TELA ---
     donationAmountInput.addEventListener("input", (e) => {
@@ -56,17 +56,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         txtTotal.textContent = valorFormatado;
     });
 
-
-    // --- PASSO 3: PROCESSAR A DOAÇÃO (SALVA NO USUÁRIO E ATUALIZA A VAQUINHA) ---
+    // --- PASSO 3: PROCESSAR A DOAÇÃO ---
     async function processarDoacao(e, metodoPagamento) {
         if (e) {
             e.preventDefault();
             e.stopPropagation();
-        }
-
-        if (!TOKEN_USUARIO) {
-            alert("Usuário não identificado. Por favor, faça login para continuar.");
-            return;
         }
 
         const nome = userNameInput.value.trim();
@@ -85,20 +79,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         try {
-            // A) Busca o usuário logado filtrando pelo token do sessionStorage
-            const respostaUserGet = await fetch(`${API_USUARIOS}?token=${TOKEN_USUARIO}`);
-            if (!respostaUserGet.ok) throw new Error("Erro ao buscar dados do usuário.");
-            
-            const usuariosEncontrados = await respostaUserGet.json();
-            if (usuariosEncontrados.length === 0) throw new Error("Usuário não localizado.");
-
-            const usuarioAtual = usuariosEncontrados[0];
-            const ID_REAL_DO_USUARIO = usuarioAtual.id; 
-
             // Gera o ID único desta transação específica
             const idTransacaoDoacao = "doc_" + Math.random().toString(36).substr(2, 9);
 
-            // Monta o objeto da nova doação
+            // Monta o objeto base da nova doação
             const novaDoacao = {
                 id_doacao: idTransacaoDoacao,
                 vaquinha_id: idDaVaquinha, 
@@ -110,34 +94,59 @@ document.addEventListener("DOMContentLoaded", async () => {
                 status: metodoPagamento === 'Pix' ? 'Aguardando Pagamento' : 'Aprovado'
             };
 
-            // Junta as doações antigas do usuário com a nova
-            const listaDoacoesAtualizada = [...(usuarioAtual.doacoes || []), novaDoacao];
+            if (TOKEN_USUARIO) {
+                // === USUÁRIO LOGADO: VINCULA AO PERFIL ===
+                const respostaUserGet = await fetch(`${API_USUARIOS}?token=${TOKEN_USUARIO}`);
+                if (!respostaUserGet.ok) throw new Error("Erro ao buscar dados do usuário.");
+                
+                const usuariosEncontrados = await respostaUserGet.json();
+                if (usuariosEncontrados.length === 0) throw new Error("Usuário não localizado.");
 
-            // B) REQUISIÇÃO 1: Atualiza a lista de doações do Usuário
-            const respostaPatchUsuario = await fetch(`${API_USUARIOS}/${ID_REAL_DO_USUARIO}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ doacoes: listaDoacoesAtualizada })
-            });
+                const usuarioAtual = usuariosEncontrados[0];
+                const ID_REAL_DO_USUARIO = usuarioAtual.id; 
 
-            if (!respostaPatchUsuario.ok) throw new Error("Falha ao salvar a doação no perfil do usuário.");
+                const listaDoacoesAtualizada = [...(usuarioAtual.doacoes || []), novaDoacao];
 
-            // C) CALCULO DO NOVO TOTAL DA VAQUINHA:
-            // Pega o valor que já estava arrecadado no banco (se não existir, assume 0) e soma a nova doação
+                const respostaPatchUsuario = await fetch(`${API_USUARIOS}/${ID_REAL_DO_USUARIO}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ doacoes: listaDoacoesAtualizada })
+                });
+
+                if (!respostaPatchUsuario.ok) throw new Error("Falha ao salvar a doação no perfil do usuário.");
+            } else {
+                // === USUÁRIO NÃO LOGADO: SALVA NA BASE DE ANÔNIMOS ===
+                const dadosAnonimos = {
+                    ...novaDoacao,
+                    doador_nome: nome,
+                    doador_cpf: cpf,
+                    doador_email: email,
+                    tipo: "Anonimo"
+                };
+
+                const respostaPostAnonimo = await fetch(API_ANONIMOS, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(dadosAnonimos)
+                });
+
+                if (!respostaPostAnonimo.ok) throw new Error("Falha ao registrar doação anônima.");
+            }
+
+            // --- ATUALIZA O MONTANTE ACUMULADO DA VAQUINHA ---
             const arrecadadoAtual = parseFloat(dadosDaVaquinhaGlobal.arrecadado || 0);
             const novoTotalArrecadado = arrecadadoAtual + valorDoacao;
 
-            // D) REQUISIÇÃO 2: Atualiza o montante acumulado direto na rota da Vaquinha
             const respostaPatchVaquinha = await fetch(`${API_VAQUINHAS}/${idDaVaquinha}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
-                    arrecadado: novoTotalArrecadado // Altere aqui se o nome do campo no seu JSON for diferente
+                    arrecadado: novoTotalArrecadado
                 })
             });
 
             if (respostaPatchVaquinha.ok) {
-                // Redireciona para a página de sucesso/pesquisa levando o ID gerado
+                // Redireciona para a página de sucesso levando o ID gerado
                 window.location.href = `sucesso.html?id=${idTransacaoDoacao}`;
             } else {
                 throw new Error("Falha ao atualizar o saldo da vaquinha.");
