@@ -1,6 +1,8 @@
+// script.js
+
 const API_URL = 'http://localhost:3000/usuarios';
 
-// Função para exibir o Toast centralizado com fundo escuro (Overlay) - Apenas para Erros
+// Função para exibir o Toast centralizado com fundo escuro (Overlay)
 function mostrarToast(mensagem, tipo = 'error') {
     const container = document.getElementById('toast-container');
     if (!container) return;
@@ -29,6 +31,7 @@ function mostrarToast(mensagem, tipo = 'error') {
     }, 2000); 
 }
 
+// Alternar entre as abas de Login e Cadastro
 function switchTab(mode) {
     const tabs = document.querySelectorAll('.tab-btn');
     const groupName = document.getElementById('group-name');
@@ -93,6 +96,7 @@ function switchTab(mode) {
     }
 }
 
+// Evento de envio do formulário (Submit)
 document.getElementById('auth-form').addEventListener('submit', async function(event) {
     event.preventDefault();
 
@@ -106,6 +110,7 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
     btnSubmit.innerText = "Processando...";
 
     if (mode === 'cadastro') {
+        // --- FLUXO DE CADASTRO ---
         const nome = document.getElementById('name').value;
         const cpf = document.getElementById('cpf').value;
         const confirmarSenha = document.getElementById('confirm-password').value;
@@ -118,10 +123,10 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
         }
 
         try {
-            const verificarEmail = await fetch(`${API_URL}?email=${email}`);
+            const verificarEmail = await fetch(`${API_URL}?email=${email.trim().toLowerCase()}`);
             const emailExistente = await verificarEmail.json();
 
-            const verificarCpf = await fetch(`${API_URL}?cpf=${cpf}`);
+            const verificarCpf = await fetch(`${API_URL}?cpf=${cpf.trim()}`);
             const cpfExistente = await verificarCpf.json();
 
             if (emailExistente.length > 0) {
@@ -138,7 +143,15 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
                 return;
             }
 
-            const novoUsuario = { nome, cpf, email, senha, token: "", doacoes: [], criacoes: [] };
+            const novoUsuario = { 
+                nome: nome.trim(), 
+                cpf: cpf.trim(), 
+                email: email.trim().toLowerCase(), 
+                senha: senha.trim(), 
+                token: "", 
+                doacoes: [], 
+                criacoes: [] 
+            };
 
             const resposta = await fetch(API_URL, {
                 method: 'POST',
@@ -169,40 +182,58 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
             btnSubmit.innerText = textoOriginalBotao;
         }
     } else {
-        // --- FLUXO DE LOGIN ---
+        // --- FLUXO DE LOGIN CORRIGIDO ---
         try {
-            const resposta = await fetch(`${API_URL}?email=${email}&senha=${senha}`);
+            // Limpa espaços invisíveis e força tudo para minúsculo
+            const emailTratado = email.trim().toLowerCase();
+            const senhaTratada = senha.trim();
+
+            // 1. Faz a busca no json-server apenas filtrando pelo e-mail
+            const resposta = await fetch(`${API_URL}?email=${emailTratado}`);
             const usuariosEncontrados = await resposta.json();
 
+            // 2. Confere se encontrou alguma conta vinculada a esse e-mail
             if (usuariosEncontrados.length > 0) {
                 const usuarioLogado = usuariosEncontrados[0];
-                const tokenGerado = crypto.randomUUID();
 
-                const atualizacaoToken = await fetch(`${API_URL}/${usuarioLogado.id}`, {
-                    method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ token: tokenGerado })
-                });
+                // 3. Verifica se a senha do banco bate exatamente com a digitada
+                if (usuarioLogado.senha === senhaTratada) {
+                    const tokenGerado = crypto.randomUUID();
 
-                if (atualizacaoToken.ok) {
-                    // Define as variáveis de sessão necessárias
-                    sessionStorage.setItem('usuarioToken', tokenGerado);
-                    sessionStorage.setItem('abaAtual', 'login');
-                    
-                    // Limpa os campos do formulário imediatamente
-                    document.getElementById('email').value = '';
-                    document.getElementById('password').value = '';
-                    btnSubmit.disabled = false;
+                    // 4. Salva o token gerado usando a rota direta por ID string
+                    const atualizacaoToken = await fetch(`${API_URL}/${usuarioLogado.id}`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ token: tokenGerado })
+                    });
 
-                    // Redireciona diretamente e sem delay para a home page
-                    window.location.href = "../home-page/home_page.html"; 
+                    if (atualizacaoToken.ok) {
+                        // Salva os dados necessários do estado local no navegador
+                        sessionStorage.setItem('usuarioToken', tokenGerado);
+                        sessionStorage.setItem('abaAtual', 'login');
+                        sessionStorage.setItem('toastAgendadoMsg', `Bem-vindo de volta, ${usuarioLogado.nome}!`);
+                        
+                        // Limpa os campos do formulário antes de mudar de tela
+                        document.getElementById('email').value = '';
+                        document.getElementById('password').value = '';
+                        btnSubmit.disabled = false;
 
+                        // Redireciona de forma direta para a home page
+                        window.location.href = "../home-page/home_page.html"; 
+
+                    } else {
+                        mostrarToast('Erro ao gerar sessão de segurança.', 'error');
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerText = textoOriginalBotao;
+                    }
                 } else {
-                    mostrarToast('Erro ao gerar sessão de segurança.', 'error');
+                    // Senha errada
+                    mostrarToast('E-mail ou senha incorretos.', 'error');
                     btnSubmit.disabled = false;
                     btnSubmit.innerText = textoOriginalBotao;
                 }
             } else {
+                // E-mail não encontrado
                 mostrarToast('E-mail ou senha incorretos.', 'error');
                 btnSubmit.disabled = false;
                 btnSubmit.innerText = textoOriginalBotao;
@@ -215,7 +246,7 @@ document.getElementById('auth-form').addEventListener('submit', async function(e
     }
 });
 
-// Quando o DOM carregar, verifica status e executa agendamentos pendentes (ex: Sucesso do cadastro)
+// Executado ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     const msgAgendada = sessionStorage.getItem('toastAgendadoMsg');
     const tipoAgendado = sessionStorage.getItem('toastAgendadoTipo') || 'success';
