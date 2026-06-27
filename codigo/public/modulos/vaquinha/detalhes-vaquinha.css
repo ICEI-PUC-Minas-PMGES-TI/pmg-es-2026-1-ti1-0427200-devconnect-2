@@ -1,3 +1,5 @@
+/* estilo-detalhes.css */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -28,7 +30,7 @@ body {
   min-height: 100vh;
 }
 
-
+/* Header alinhado com o padrão do projeto */
 .header {
   background: var(--verde-escuro);
   color: white;
@@ -71,7 +73,7 @@ body {
   font-weight: bold;
 }
 
-
+/* Container de Conteúdo */
 .container {
   max-width: 600px;
   margin: 30px auto;
@@ -82,95 +84,156 @@ body {
   border: 1px solid var(--cinza-borda);
 }
 
-.campo {
-  margin-bottom: 20px;
+/* Estado oculto controlado pelo JS */
+.oculto {
+  display: none !important;
 }
 
-.campo label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin-bottom: 6px;
-  color: #444;
-}
-
-.campo input,
-.campo textarea,
-.campo select {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1.5px solid var(--cinza-borda);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-family: 'Inter', Arial, sans-serif;
-  background: var(--cinza-bg);
-  color: var(--texto);
-  transition: border-color var(--t), box-shadow var(--t);
-}
-
-.campo input:focus,
-.campo textarea:focus,
-.campo select:focus {
-  outline: none;
-  border-color: var(--verde-medio);
-  box-shadow: 0 0 0 3px rgba(45,122,69,0.1);
-  background: var(--branco);
-}
-
-.campo textarea {
-  resize: vertical;
-}
-
-
-.erro {
-  display: block;
-  font-size: 0.8rem;
+/* Alerta de urgência (Emergencial) */
+#linhaEmergencial {
+  background-color: #fff5f5;
   color: #c62828;
-  margin-top: 4px;
-  min-height: 16px;
+  border: 1.5px solid #ef9a9a;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-
-.upload-imagem {
+/* Topo dos detalhes */
+.topo-detalhes {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 160px;
-  border: 2px dashed var(--cinza-borda);
-  border-radius: var(--radius);
-  cursor: pointer;
-  background: var(--cinza-bg);
-  overflow: hidden;
-  transition: border-color var(--t);
+  margin-bottom: 12px;
 }
 
-.upload-imagem:hover {
-  border-color: var(--verde-medio);
+.badge-categoria {
+  display: inline-block;
+  background: var(--verde-claro);
+  color: var(--verde-escuro);
+  border: 1px solid var(--verde-borda);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
 }
 
-#placeholder-upload {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+.data-topo {
   color: var(--cinza-texto);
   font-size: 0.85rem;
 }
 
-.icone-camera {
-  font-size: 2rem;
+/* Título e Descrição da Vaquinha */
+#titulo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--texto);
+  margin-bottom: 16px;
+  line-height: 1.3;
 }
 
-#preview {
+#descricao {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Exibição da Imagem salva em Base64 */
+#imagemVaquinha img {
   width: 100%;
-  height: 100%;
+  max-height: 320px;
   object-fit: cover;
-  display: none;
+  border-radius: var(--radius);
+  border: 1px solid var(--cinza-borda);
+  margin-bottom: 24px;
+  display: block;
 }
 
-.btn-criar {
+/* Grid Financeiro */
+.meta-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: var(--texto);
+  margin-bottom: 8px;
+}
+
+#arrecadado {
+  color: var(--verde-escuro);
+  font-size: 1.1rem;
+}
+
+/* Estrutura Limpa da Barra de Progresso */
+.progresso-container {
+  background-color: var(--cinza-bg);
+  border: 1px solid var(--cinza-borda);
+  border-radius: 20px;
+  height: 16px;
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+#barraProgresso {
+  height: 100%;
+  background-color: var(--verde-medio);
+  width: 0%; /* Alterado dinamicamente pelo JS */
+  transition: width var(--t);
+}
+
+#porcentagem {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--verde-medio);
+  margin-bottom: 24px;
+}
+
+.divisor {
+  border: none;
+  border-top: 1.5px solid var(--cinza-borda);
+  margin: 20px 0;
+}
+
+/* Meta dados complementares */
+.info-linha {
+  font-size: 0.9rem;
+  color: var(--texto);
+  margin-bottom: 8px;
+}
+
+.info-linha strong {
+  color: #444;
+}
+
+/* Bloco de Informações Adicionais */
+#blocoInformacoes h3 {
+  font-size: 1.05rem;
+  color: var(--texto);
+  margin-bottom: 8px;
+}
+
+#informacoes {
+  background: var(--cinza-bg);
+  border: 1px solid var(--cinza-borda);
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* Botão de Doar seguindo o padrão Âmbar arredondado */
+.secao-botao {
+  margin-top: 28px;
+}
+
+.btn-doar {
+  display: block;
   width: 100%;
   padding: 14px;
   background: var(--ambar);
@@ -179,49 +242,33 @@ body {
   border-radius: 30px;
   font-size: 1rem;
   font-weight: 700;
-  font-family: 'Inter', Arial, sans-serif;
-  cursor: pointer;
-  margin-top: 8px;
+  text-align: center;
+  text-decoration: none;
   transition: background var(--t), transform var(--t), box-shadow var(--t);
   box-shadow: 0 4px 14px rgba(245,166,35,0.35);
 }
 
-.btn-criar:hover {
+.btn-doar:hover {
   background: var(--ambar-hover);
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(245,166,35,0.4);
 }
 
-
-.mensagem-sucesso {
+/* Link para ver a ONG vinculada */
+.secao-ong {
   text-align: center;
-  padding: 30px 10px;
+  margin-top: 20px;
 }
 
-.icone-sucesso {
-  width: 64px;
-  height: 64px;
-  background: var(--verde-medio);
-  color: var(--branco);
-  border-radius: 50%;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 16px;
-}
-
-.mensagem-sucesso h2 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
+#linkOng {
+  font-size: 0.9rem;
   color: var(--verde-escuro);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color var(--t);
 }
 
-.mensagem-sucesso p {
-  color: var(--cinza-texto);
-  margin-bottom: 24px;
-}
-
-.oculto {
-  display: none;
+#linkOng:hover {
+  color: var(--verde-medio);
+  text-decoration: underline;
 }

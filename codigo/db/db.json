@@ -1,6 +1,35 @@
 {
   "usuarios": [],
-  "vaquinhas": [],
+  "vaquinhas": [
+    {
+      "titulo": "Ajuda pro toto",
+      "descricao": "Me ajude a arrecadar para meu cachorro",
+      "categoria": "Educação",
+      "tipoDoacao": "dinheiro",
+      "meta": 1000,
+      "arrecadado": 0,
+      "informacoes": "A cirurgia é aqui",
+      "imagem": "http://127.0.0.1:5501/codigo/public/modulos/vaquinha/criar-vaquinha.html",
+      "emergencial": false,
+      "dataCriacao": "2026-06-27",
+      "dataLimite": "",
+      "id": "QJhAoZoKwkg"
+    },
+    {
+      "titulo": "Ajuda pro toto",
+      "descricao": "Me ajude a arrecadar para meu cachorro",
+      "categoria": "Educação",
+      "tipoDoacao": "dinheiro",
+      "meta": 1000,
+      "arrecadado": 0,
+      "informacoes": "A cirurgia é aqui",
+      "imagem": "http://127.0.0.1:5501/codigo/public/modulos/vaquinha/criar-vaquinha.html",
+      "emergencial": false,
+      "dataCriacao": "2026-06-27",
+      "dataLimite": "",
+      "id": "4VipPtbDShc"
+    }
+  ],
   "ongs": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

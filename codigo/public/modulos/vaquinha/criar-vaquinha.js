@@ -94,7 +94,7 @@ document.getElementById("form-vaquinha").addEventListener("submit", function (e)
   salvarVaquinha(novaVaquinha) //envia o objeto para o json-server
 })
 
-// envia a vaquinha para o json-server
+// envia a vaquinha para o json-server e redireciona para os detalhes
 function salvarVaquinha(vaquinha) {
   fetch('http://localhost:3000/vaquinhas', {
     method: 'POST',
@@ -102,15 +102,16 @@ function salvarVaquinha(vaquinha) {
     body: JSON.stringify(vaquinha)
   })
   .then(function (response) {
-    return response.json()
+    return response.json() // O json-server retorna o objeto criado com o ID gerado
   })
   .then(function (data) {
-    document.getElementById("form-vaquinha").classList.add("oculto")
-    document.getElementById("mensagem-sucesso").classList.remove("oculto")
+    // data.id contém o ID da vaquinha que acabou de ser salva
+    // Ajuste o caminho da pasta se a página de detalhes estiver em outro diretório
+    window.location.href = "detalhes-vaquinha.html?id=" + data.id
   })
   .catch(function (error) {
     console.log(error)
-    alert("Erro ao salvar a vaquinha. Verifique se o servidor esta rodando.")
+    alert("Erro ao salvar a vaquinha. Verifique se o servidor está rodando.")
   })
 }
 
