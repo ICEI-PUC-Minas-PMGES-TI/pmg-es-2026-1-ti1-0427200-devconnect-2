@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // --- REQUISIÇÃO AJAX ATUALIZADA (BUSCANDO AS CRIAÇÕES DE DENTRO DOS USUÁRIOS) ---
-    fetch('http://localhost:3000/usuarios')
+    fetch('https://pmg-es-2026-1-ti1-0427200-devconnect-2-1.onrender.com/usuarios')
     .then(function(response) {
         if (!response.ok) throw new Error("Erro de comunicação com o servidor.");
         return response.json();

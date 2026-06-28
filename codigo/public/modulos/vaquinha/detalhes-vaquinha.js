@@ -5,7 +5,7 @@ if (id == null) {
     document.getElementById('titulo').textContent = 'Campanha não encontrada.';
 } else {
     // Busca todos os usuários para revirar as 'criacoes'
-    fetch('http://localhost:3000/usuarios')
+    fetch('https://pmg-es-2026-1-ti1-0427200-devconnect-2-1.onrender.com/usuarios')
     .then(function(response) {
         if (!response.ok) throw new Error("Erro ao acessar o servidor.");
         return response.json();

@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // --- 5. SALVAMENTO DIRETO NO ARRAY DE CRIAÇÕES DO USUÁRIO ---
     async function salvarCampanha(campanha) {
-        const API_URL = "http://localhost:3000/usuarios";
+        const API_URL = "https://pmg-es-2026-1-ti1-0427200-devconnect-2-1.onrender.com/usuarios";
 
         try {
             // 1. Busca o registro do usuário logado via token

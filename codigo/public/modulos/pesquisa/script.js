@@ -2,7 +2,7 @@ const cardsContainer = document.getElementById('cards-container');
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
 
-const API_URL = 'http://localhost:3000/vaquinhas';
+const API_URL = 'https://pmg-es-2026-1-ti1-0427200-devconnect-2-1.onrender.com/vaquinhas';
 
 let vaquinhas = [];
 

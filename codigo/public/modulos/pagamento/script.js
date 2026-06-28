@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
     // Configurações
-    const API_USUARIOS = "http://localhost:3000/usuarios";
-    const API_ANONIMOS = "http://localhost:3000/anonimos";
+    const API_USUARIOS = "https://pmg-es-2026-1-ti1-0427200-devconnect-2-1.onrender.com/usuarios";
+    const API_ANONIMOS = "https://pmg-es-2026-1-ti1-0427200-devconnect-2-1.onrender.com/anonimos";
     const TOKEN_USUARIO = sessionStorage.getItem("usuarioToken");
 
     // Identificadores da URL

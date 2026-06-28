@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const API_URL = "http://localhost:3000/usuarios";
+    const API_URL = "https://pmg-es-2026-1-ti1-0427200-devconnect-2-1.onrender.com/usuarios";
     const TOKEN_USUARIO = sessionStorage.getItem("usuarioToken");
     
     // Recuperar ID da URL
