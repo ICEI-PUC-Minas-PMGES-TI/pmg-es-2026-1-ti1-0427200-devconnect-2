@@ -1,0 +1,27 @@
+{
+  "name": "pmg-es-2026-1-ti1-0427200-devconnect-2",
+  "version": "1.0.0",
+  "description": "A ConectaPlus é uma aplicação desenvolvida para conectar pessoas que necessitam de doações àquelas que desejam ajudar. Por meio da plataforma, é possível doar dinheiro, roupas, alimentos e outros itens, facilitando o apoio a quem mais precisa.Além disso, a ConectaPlus busca promover a solidariedade e tornar o processo de doação mais acessível, seguro e organizado, permitindo que doadores encontrem rapidamente pessoas ou instituições que realmente necessitam de ajuda. Dessa forma, a aplicação contribui para fortalecer o senso de comunidade e incentivar atitudes de empatia e colaboração na sociedade.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "json-server --watch db.json --port 3000 --host 0.0.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2026-1-ti1-0427200-devconnect-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2026-1-ti1-0427200-devconnect-2/issues"
+  },
+  "homepage": "https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2026-1-ti1-0427200-devconnect-2#readme",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.15"
+  }
+}
