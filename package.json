@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "json-server --watch db.json --port 3000 --host 0.0.0.0"
+    "start": "json-server --watch codigo/db/db.json --port 3000 --host 0.0.0.0"
   },
   "repository": {
     "type": "git",
