@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const API_URL = "http://localhost:3000/usuarios";
     const TOKEN_USUARIO = sessionStorage.getItem("usuarioToken");
 
+    // Elementos da Interface
     const txtNomeUsuario = document.getElementById("nomeUsuario");
     const containerFoto = document.getElementById("fotoUsuario");
     const menuItems = document.querySelectorAll(".menu-item");
@@ -15,13 +16,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     let usuarioLogado = null;
     const estruturaOriginalTabela = document.querySelector(".table-responsive").innerHTML;
 
+    // Verificação de Segurança
     if (!TOKEN_USUARIO) {
-        alert("Sessão expirada ou usuário não conectado.");
+        alert("Sessão expirada. Faça login novamente.");
         window.location.href = "../Login/login.html";
         return;
     }
 
-    // --- LÓGICA DE NAVEGAÇÃO ---
+    // --- LÓGICA DE ABAS ---
     menuItems.forEach(item => {
         item.addEventListener("click", () => {
             if (item.textContent.trim() === "Sair") {
@@ -99,8 +101,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
                 <td><strong>${item.titulo}</strong></td>
-                <td>R$ ${item.meta}</td>
-                ${tipoAlvo === "Vaquinha" ? `<td>R$ ${item.arrecadado || 0}</td>` : `<td>${item.cnpj}</td>`}
+                <td>R$ ${Number(item.meta).toFixed(2)}</td>
+                ${tipoAlvo === "Vaquinha" ? `<td>R$ ${Number(item.arrecadado || 0).toFixed(2)}</td>` : `<td>${item.cnpj}</td>`}
                 <td><span class="badge ${item.status === 'Pendente' ? 'badge-pendente' : 'badge-concluida'}">${item.status}</span></td>
                 <td>
                     <button class="btn btn-sm btn-outline-success btn-editar" data-id="${item.id}">Editar</button>
@@ -109,16 +111,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             corpo.appendChild(tr);
         });
 
-        // Evento de Edição
         document.querySelectorAll(".btn-editar").forEach(btn => {
-            btn.onclick = (e) => {
-                const id = e.target.getAttribute("data-id");
-                window.location.href = `../editar-projeto/editar.html?id=${id}`;
-            };
+            btn.onclick = (e) => window.location.href = `../editar-projeto/editar.html?id=${e.target.dataset.id}`;
         });
     }
 
-    // --- CARREGAMENTO INICIAL ---
+    // --- CARREGAMENTO E CÁLCULOS ---
     try {
         const res = await fetch(`${API_URL}?token=${TOKEN_USUARIO}`);
         const usuarios = await res.json();
@@ -131,10 +129,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     function processarEExibirDados(doacoes, elemento) {
         if (!elemento) return;
         elemento.innerHTML = "";
+        let total = 0;
+
         doacoes.forEach(d => {
+            total += parseFloat(d.valor) || 0;
             const tr = document.createElement("tr");
-            tr.innerHTML = `<td>${new Date(d.data).toLocaleDateString()}</td><td>${d.vaquinha_titulo}</td><td>R$ ${d.valor}</td><td>${d.metodo}</td><td>Aprovado</td>`;
+            tr.innerHTML = `<td>${new Date(d.data).toLocaleDateString()}</td><td>${d.vaquinha_titulo}</td><td>R$ ${parseFloat(d.valor).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td><td>${d.metodo}</td><td>Aprovado</td>`;
             elemento.appendChild(tr);
         });
+
+        if (cardTotalDoado) cardTotalDoado.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        if (cardProjetosApoiados) cardProjetosApoiados.textContent = new Set(doacoes.map(d => d.vaquinha_titulo)).size;
+        
+        if (doacoes.length > 0) {
+            const datas = doacoes.map(d => new Date(d.data));
+            cardUltimaDoacao.textContent = new Date(Math.max(...datas)).toLocaleDateString('pt-BR');
+        }
     }
 });
